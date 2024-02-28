@@ -1,7 +1,7 @@
 import { lazy } from "react";
 import { AppRouteObject } from "#/router";
 import { RouterProvider, Navigate,RouteObject, createBrowserRouter } from "react-router-dom";
-import DashboardLayout from '@/layout/dashboard';
+import { MenuRoutes } from "./routes/menu-routes";
 
 const LoginRoute: AppRouteObject = {
   path: "/login",
@@ -14,18 +14,19 @@ const PAGE_NOT_FOUND_ROUTE: AppRouteObject = {
 
 export default function Router() {
   //const permissionRoutes = usePermissionRoutes();
-  const asyncRoutes: AppRouteObject = {
-    path: '/',
-    element: (
-      // <AuthGuard>
-        <DashboardLayout />
-      // </AuthGuard>
-    ),
-    children: [{ index: true, element: <Navigate to={"/dashboard/workbench"} replace /> }],
-  };
+  // const asyncRoutes: AppRouteObject = {
+  //   path: '/',
+  //   element: (
+  //       <DashboardLayout />
+  //   ),
+  //   children: [{ index: true, element: <Navigate to={"/dashboard/workbench"} replace /> }],
+  // };
+  console.log(11,LoginRoute, MenuRoutes);
 
-  const routes = [LoginRoute,asyncRoutes, PAGE_NOT_FOUND_ROUTE];
+  const routes = [LoginRoute,MenuRoutes, PAGE_NOT_FOUND_ROUTE];
 
   const router = createBrowserRouter(routes as unknown as RouteObject[]);
+  console.log(router);
+  
   return <RouterProvider router={router} />;
 }
