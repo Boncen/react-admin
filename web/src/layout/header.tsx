@@ -24,7 +24,7 @@ export default function Header() {
     <div>
       <Nav mode="horizontal" defaultSelectedKeys={["Home"]}>
         <Nav.Header>
-          <IconSemiLogo style={{ height: "36px", fontSize: 36 }} />
+          {/* <IconSemiLogo style={{ height: "36px", fontSize: 36 }} /> */}
         </Nav.Header>
         {/* <span
                 style={{

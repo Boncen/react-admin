@@ -1,25 +1,28 @@
-import { Layout, Skeleton } from '@douyinfe/semi-ui';
-import Header from '@/layout/header';
-import SidebarMenus from '@/layout/menus';
-import { Outlet } from 'react-router-dom';
+import { Layout } from "@douyinfe/semi-ui";
+import Header from "@/layout/header";
+import SidebarMenus from "@/layout/menus";
+import { Outlet } from "react-router-dom";
+import MultiTabs from "./multi-tabs";
 
 export default function DashboardLayout() {
-    const {Content} = Layout
-    return (
-        <Layout style={{ border: '1px solid var(--semi-color-border)' ,height:'100%' }}>
-            <Header/>
-            <Layout>
-                <SidebarMenus/>
-                <Content
-                    style={{
-                        padding: '24px',
-                        backgroundColor: 'var(--semi-color-bg-0)',
-                    }}
-                >
-                  <Outlet/>
-                </Content>
-            </Layout>
-            {/* <Footer
+  const { Content } = Layout;
+  console.log("DashboardLayout render again");
+  const isMultiTabs = true; //todo read from store
+  return (
+    <Layout style={{ height: "100%" }}>
+      <SidebarMenus />
+      <Layout>
+        <Header />
+        <Content
+          style={{
+            padding: "10px 14px",
+            backgroundColor: "var(--semi-color-bg-0)",
+          }}
+        >
+          {isMultiTabs ? <MultiTabs /> : <Outlet />}
+        </Content>
+      </Layout>
+      {/* <Footer
                 style={{
                     display: 'flex',
                     justifyContent: 'space-between',
@@ -30,6 +33,6 @@ export default function DashboardLayout() {
             >
                <FooterContent/>
             </Footer> */}
-        </Layout>
-    )
+    </Layout>
+  );
 }

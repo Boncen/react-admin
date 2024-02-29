@@ -21,8 +21,6 @@ export default function Router() {
   //   ),
   //   children: [{ index: true, element: <Navigate to={"/dashboard/workbench"} replace /> }],
   // };
-  console.log(11,LoginRoute, MenuRoutes);
-
   const routes = [LoginRoute,MenuRoutes, PAGE_NOT_FOUND_ROUTE];
 
   const router = createBrowserRouter(routes as unknown as RouteObject[]);

@@ -1,8 +1,8 @@
 import { getMenuModules } from '../utils';
-import { Navigate } from 'react-router-dom';
+// import { Navigate } from 'react-router-dom';
 import { AppRouteObject } from '#/router';
 import DashboardLayout from '@/layout/dashboard';
-import PageMapper from '@/utils/page-mapper';
+// import PageMapper from '@/utils/page-mapper';
 
 const menuModuleRoutes = getMenuModules();
 
@@ -15,6 +15,6 @@ export const MenuRoutes: AppRouteObject = {
     element: (
         <DashboardLayout />
     ),
-    children: [{ index: true, element: <div>123</div> }, ...menuModuleRoutes],
+    children: [{ index: true, element: <div>home</div> }, ...menuModuleRoutes],
   };
   
