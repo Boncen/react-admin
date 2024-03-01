@@ -6,7 +6,6 @@ import MultiTabs from "./multi-tabs";
 
 export default function DashboardLayout() {
   const { Content } = Layout;
-  console.log("DashboardLayout render again");
   const isMultiTabs = true; //todo read from store
   return (
     <Layout style={{ height: "100%" }}>
@@ -15,7 +14,7 @@ export default function DashboardLayout() {
         <Header />
         <Content
           style={{
-            padding: "10px 14px",
+            padding: "2px 5px",
             backgroundColor: "var(--semi-color-bg-0)",
           }}
         >

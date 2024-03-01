@@ -1,9 +1,10 @@
 import { Layout, Nav } from "@douyinfe/semi-ui";
 import { IconHome, IconSetting, IconUser } from "@douyinfe/semi-icons";
 import PageMapper from "@/utils/page-mapper";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "@/router/hook";
 import Logo from "./logo";
+import useKeepAlive from "@/hooks/use-keepalive";
 
 const menus: any[] = [
   {
@@ -49,14 +50,18 @@ export default function SidebarMenus() {
   const { Sider } = Layout;
   const router = useRouter();
   const [selectedKeys, setSelectedKeys] = useState([""]);
+  const {activeTabRoutePath} = useKeepAlive();
+
+  useEffect(()=>{
+    setSelectedKeys([activeTabRoutePath ?? ""]);
+  }, [activeTabRoutePath])
+
   const handleClickNavMenu = (data: {
     itemKey?: React.ReactText | undefined;
     domEvent?: MouseEvent | undefined;
     isOpen?: boolean | undefined;
   }) => {
-    console.log(data);
     if (data.itemKey && (data.itemKey as string).indexOf("/") === 0) {
-      console.log(data.itemKey);
       router.push(data.itemKey as string);
       setSelectedKeys([data.itemKey as string]);
     }

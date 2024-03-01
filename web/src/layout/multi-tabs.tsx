@@ -1,29 +1,67 @@
-import { Tabs } from "@douyinfe/semi-ui";
-import { useState } from "react";
-import useKeepAlive from '@/hooks/use-keepalive';
-export default function MultiTabs(){
-    const tabList = [
-        { tab: '文档', itemKey: '1' },
-        { tab: '快速起步', itemKey: '2' },
-        { tab: '帮助', itemKey: '3' },
-    ];
-    const [key, setKey] = useState(1);
-    const handleTabChange = (key: number)=>{
-        console.log('tab change', key);
-        setKey(key)
+import { Card, TabPane, Tabs } from "@douyinfe/semi-ui";
+import { useEffect, useState } from "react";
+import useKeepAlive from "@/hooks/use-keepalive";
+import { useRouter } from "@/router/hook";
+export default function MultiTabs() {
+  const { push } = useRouter();
+  const [defaultKey, setDefaultKey] = useState("");
+  const [tabList, setTabList] = useState<{ tab: string; itemKey: string }[]>(
+    []
+  );
+  const handleTabChange = (key: string) => {
+    if (key) {
+      push(key);
     }
-    const {tabs} = useKeepAlive();
-    const contentList = [<div>文档</div>, <div>快速起步</div>, <div>帮助</div>];
+  };
+  const { tabs, activeTabRoutePath, closeTab } = useKeepAlive();
 
-    return (
-        <Tabs
-                type="card"
-                tabList={tabList}
-                onChange={key => {
-                    handleTabChange(Number(key));
-                }}
-            >
-                {contentList[Number(key) - 1]}
-            </Tabs>
-    )
+  useEffect(() => {
+    tabs.map((x) => {
+      const tabTabItem = tabList.find((z) => z.itemKey === x.key);
+      if (!tabTabItem) {
+        setTabList((prev) => [...prev, { tab: x.label, itemKey: x.key }]);
+        //setContentList((prev)=>[...prev,])
+      }
+    });
+    setDefaultKey(activeTabRoutePath ?? "");
+    console.log(activeTabRoutePath, defaultKey);
+  }, [tabs, tabList, activeTabRoutePath]);
+
+  const IndexTab = (key: string) => {
+    const tab = tabList.find((x) => x.itemKey == key);
+    return tab?.tab;
+  };
+  const handleCloseTab = (key: string) => {
+    closeTab(key);
+    const newTabList = [...tabList];
+    const closeIndex = newTabList.findIndex((t) => t.itemKey === key);
+    newTabList.splice(closeIndex, 1);
+    setTabList(newTabList);
+  };
+  return (
+    <Tabs
+      type="card"
+      activeKey={defaultKey}
+      onTabClose={handleCloseTab}
+      onChange={(key) => {
+        handleTabChange(key);
+      }}
+    >
+      {tabs.map((l) => (
+        <TabPane
+          itemKey={l.key}
+          key={l.key}
+          closable={tabList.length>1}
+          tab={IndexTab(l.key)}
+        >
+          <Card
+            shadows="always"
+            className="h-full mt-2"
+          >
+            {l.children}
+          </Card>
+        </TabPane>
+      ))}
+    </Tabs>
+  );
 }

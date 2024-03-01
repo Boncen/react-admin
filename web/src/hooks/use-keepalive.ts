@@ -1,7 +1,6 @@
 import { RouteMeta } from "#/router";
-import { useRouter } from "@/router/hook";
+import { useMatchRouteMeta, useRouter } from "@/router/hook";
 import { useEffect, useState } from "react";
-import { useMatches, useOutlet } from "react-router-dom";
 
 export type KeepAliveTab = RouteMeta & {
   children: any;
@@ -12,23 +11,57 @@ export default function useKeepAlive() {
   // tabs
   const [tabs, setTabs] = useState<KeepAliveTab[]>([]);
   const [activeTabRoutePath, setActiveTabRoutePath] = useState<string>();
+  const currentRouteMeta = useMatchRouteMeta();
 
-  // 获取路由组件实例
-  const children = useOutlet();
-  console.log("children", children);
+  const closeTab = (key: string) => {
+    if (!key) {
+      return;
+    }
+    const index = tabs.findIndex(x=>x.key === key);
+    if(index < 0) return;
+    const tabsCopy = tabs;
+    tabsCopy.splice(index,1);
+    setTabs(tabsCopy);
+    setNextActiveTab();
+  };
+  const closeOthers = () => {};
+  const closeLeft = () => {};
+  const closeRight = () => {};
+  const refreshTab = () => {};
+  const setNextActiveTab = () => {
 
-  // 获取所有匹配的路由
-  const matchs = useMatches();
-  console.log("matchs", matchs);
+  }
 
   useEffect(() => {
-    console.log("matchs in useEffects", matchs);
-    const lastMatchRoute = matchs[matchs.length - 1];
-    // setTabs(...tabs, )
-  }, [matchs]);
+    console.log(currentRouteMeta);
+    if (!currentRouteMeta) {
+      return;
+    }
+    
+    const tab = tabs.find((x) => x.key === currentRouteMeta?.key);
+    if (!tab) {
+      setTabs((prev) => [
+        ...prev,
+        {
+          ...currentRouteMeta!,
+          children: currentRouteMeta!.outlet,
+          timeStamp: getKey(),
+        },
+      ]);
+    }
+    setActiveTabRoutePath(currentRouteMeta.key);
+  }, [currentRouteMeta, tabs]);
 
   return {
     tabs,
     activeTabRoutePath,
+    closeTab,
+    closeLeft,
+    closeOthers,
+    closeRight,
+    refreshTab,
   };
+}
+function getKey() {
+  return new Date().getTime().toString();
 }
