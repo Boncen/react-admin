@@ -1,70 +1,75 @@
-import { Nav, Button, Avatar } from "@douyinfe/semi-ui";
-import {
-  IconSemiLogo,
-  IconSun,
-  IconMoon,
-} from "@douyinfe/semi-icons";
-import { useState } from "react";
+import { Nav, Button, Avatar, Dropdown } from "@douyinfe/semi-ui";
+import { IconSun, IconMoon } from "@douyinfe/semi-icons";
+import { useEffect, useState } from "react";
+import MyBreadcrumb from "./breadcrumb";
+import { useDarkMode, useToggleDarkMode } from "@/store/settingsStore";
+import PageMapper from "@/utils/page-mapper";
+import { useRouter } from "@/router/hook";
 
 export default function Header() {
-  const [isLight, setIsLight] = useState(true);
+  const isDark = useDarkMode();
+  const { push } = useRouter();
 
+  const [isDarkMode, setIsDarkMode] = useState(isDark);
+  useEffect(() => {
+    changeTheme();
+  });
+  const toggleDark = useToggleDarkMode();
   const switchDarkLight = () => {
+    setIsDarkMode(!isDarkMode);
+    toggleDark(!isDark);
+    changeTheme();
+  };
+  const changeTheme = () => {
     const body = document.body;
-    if (body.hasAttribute("theme-mode")) {
+    if (!isDark) {
       body.removeAttribute("theme-mode");
-      setIsLight(true);
     } else {
       body.setAttribute("theme-mode", "dark");
-      setIsLight(false);
     }
   };
+  
+  function handleLogout(): void {
+    push(PageMapper.Login)
+  }
 
   return (
     <div>
-      <Nav mode="horizontal" defaultSelectedKeys={["Home"]} style={{border: 'none'}}>
-        <Nav.Header >
-          {/* <IconSemiLogo style={{ height: "36px", fontSize: 36 }} /> */}
+      <Nav
+        mode="horizontal"
+        defaultSelectedKeys={["Home"]}
+        style={{ border: "none" }}
+      >
+        <Nav.Header>
+          <MyBreadcrumb />
         </Nav.Header>
-        {/* <span
-                style={{
-                    color: 'var(--semi-color-text-2)',
-                }}
-            >
-                <span
-                    style={{
-                        marginRight: '24px',
-                        color: 'var(--semi-color-text-0)',
-                        fontWeight: '600',
-                    }}
-                >
-                    模版推荐
-                </span>
-                <span style={{ marginRight: '24px' }}>所有模版</span>
-                <span>我的模版</span>
-            </span> */}
         <Nav.Footer>
           <Button
             theme="borderless"
             icon={
-              isLight ? <IconSun size="large" /> : <IconMoon size="large" />
+              isDarkMode ? <IconSun size="large" /> : <IconMoon size="large" />
             }
             onClick={switchDarkLight}
             style={{
               marginRight: "12px",
             }}
           />
-          {/* <Button
-                    theme="borderless"
-                    icon={<IconHelpCircle size="large" />}
-                    style={{
-                        color: 'var(--semi-color-text-2)',
-                        marginRight: '12px',
-                    }}
-                /> */}
-          <Avatar color="orange" size="small">
-            YJ
-          </Avatar>
+          <Dropdown
+            trigger={"hover"}
+            position={"bottomRight"}
+            render={
+              <Dropdown.Menu>
+                <Dropdown.Item onClick={() => push(PageMapper.MyInfo)}>
+                  个人信息
+                </Dropdown.Item>
+                <Dropdown.Item onClick={handleLogout}>退出登录</Dropdown.Item>
+              </Dropdown.Menu>
+            }
+          >
+            <Avatar color="pink" size="small">
+              HBC
+            </Avatar>
+          </Dropdown>
         </Nav.Footer>
       </Nav>
     </div>

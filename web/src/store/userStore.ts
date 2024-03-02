@@ -30,7 +30,18 @@ const useUserStore = create((set) => ({
       },
   }))
 
-  const permissionList: Permission[] = [ {
+  const permissionList: Permission[] = [
+    {
+      id: '1',
+      parentId: '',
+      label: '首页',
+      name: 'home',
+      icon: '',
+      type: PermissionType.MENU,
+      route: '',
+      component: '/dashboard.tsx',
+    },
+    {
     id: '5733704222120995',
     parentId: '',
     label: 'sample',
@@ -64,5 +75,5 @@ const useUserStore = create((set) => ({
 
   export const useUserInfo = () => useUserStore((state: any) => state.userInfo);
   export const useUserToken = () => useUserStore((state: any) => state.userToken);
-  export const useUserPermission = () => useUserStore(() => permissionList);
+  export const useUserPermission = () => useUserStore(() => permissionList); // todo
   export const useUserActions = () => useUserStore((state: any) => state.actions);

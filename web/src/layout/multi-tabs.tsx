@@ -1,7 +1,8 @@
-import { Card, TabPane, Tabs } from "@douyinfe/semi-ui";
+import { TabPane, Tabs } from "@douyinfe/semi-ui";
 import { useEffect, useState } from "react";
 import useKeepAlive from "@/hooks/use-keepalive";
 import { useRouter } from "@/router/hook";
+
 export default function MultiTabs() {
   const { push } = useRouter();
   const [defaultKey, setDefaultKey] = useState("");
@@ -20,12 +21,10 @@ export default function MultiTabs() {
       const tabTabItem = tabList.find((z) => z.itemKey === x.key);
       if (!tabTabItem) {
         setTabList((prev) => [...prev, { tab: x.label, itemKey: x.key }]);
-        //setContentList((prev)=>[...prev,])
       }
     });
     setDefaultKey(activeTabRoutePath ?? "");
-    console.log(activeTabRoutePath, defaultKey);
-  }, [tabs, tabList, activeTabRoutePath]);
+  }, [tabs, tabList, activeTabRoutePath, defaultKey]);
 
   const IndexTab = (key: string) => {
     const tab = tabList.find((x) => x.itemKey == key);
@@ -54,12 +53,11 @@ export default function MultiTabs() {
           closable={tabList.length>1}
           tab={IndexTab(l.key)}
         >
-          <Card
-            shadows="always"
-            className="h-full mt-2"
+          <div
+            className="h-full p-2"
           >
             {l.children}
-          </Card>
+          </div>
         </TabPane>
       ))}
     </Tabs>

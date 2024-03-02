@@ -3,7 +3,9 @@ const PageMapper = {
     Users : "/sys/users",
     Roles : "/sys/roles",
     Settings : "/sys/settings",
-    TestPage: "/test"
+    TestPage: "/test",
+    MyInfo: "/sys/my",
+    Login: "/login"
 }
 
 export default PageMapper

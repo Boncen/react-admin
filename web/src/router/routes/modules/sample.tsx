@@ -5,6 +5,7 @@ import { Outlet } from "react-router-dom";
 
 const Sample1Page = lazy(() => import(`@/pages/samples/s1/index`));
 const Sample2Page = lazy(() => import(`@/pages/samples/s2/index`));
+const SampleIndexPage = lazy(() => import(`@/pages/samples/index`));
 
 const UserRoute: AppRouteObject = {
   order: 9,
@@ -20,8 +21,8 @@ const UserRoute: AppRouteObject = {
   },
   children: [
     {
-      index: true,
-      element: <div>user index element</div>,
+      path: "index",
+      element: <SampleIndexPage /> ,
     },
     {
       path: "s1",

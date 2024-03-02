@@ -1,8 +1,8 @@
 import { getMenuModules } from '../utils';
-// import { Navigate } from 'react-router-dom';
 import { AppRouteObject } from '#/router';
 import DashboardLayout from '@/layout/dashboard';
-// import PageMapper from '@/utils/page-mapper';
+import Dashboard from '@/pages/dashboard'
+import { Suspense } from 'react';
 
 const menuModuleRoutes = getMenuModules();
 
@@ -13,8 +13,10 @@ const menuModuleRoutes = getMenuModules();
 export const MenuRoutes: AppRouteObject = {
     path: '/',
     element: (
-        <DashboardLayout />
+        <Suspense>
+            <DashboardLayout />
+        </Suspense>
     ),
-    children: [{ index: true, element: <div>home</div> }, ...menuModuleRoutes],
+    children: [{ index: true, element: <Dashboard/>  }, ...menuModuleRoutes],
   };
   

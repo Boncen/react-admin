@@ -1,9 +1,9 @@
 import { Layout, Nav } from "@douyinfe/semi-ui";
-import { IconHome, IconSetting, IconUser } from "@douyinfe/semi-icons";
+import { IconHome, IconSemiLogo, IconSetting, IconUser } from "@douyinfe/semi-icons";
 import PageMapper from "@/utils/page-mapper";
 import { useEffect, useState } from "react";
 import { useRouter } from "@/router/hook";
-import Logo from "./logo";
+// import Logo from "./logo";
 import useKeepAlive from "@/hooks/use-keepalive";
 
 const menus: any[] = [
@@ -50,11 +50,11 @@ export default function SidebarMenus() {
   const { Sider } = Layout;
   const router = useRouter();
   const [selectedKeys, setSelectedKeys] = useState([""]);
-  const {activeTabRoutePath} = useKeepAlive();
+  const { activeTabRoutePath } = useKeepAlive();
 
-  useEffect(()=>{
+  useEffect(() => {
     setSelectedKeys([activeTabRoutePath ?? ""]);
-  }, [activeTabRoutePath])
+  }, [activeTabRoutePath]);
 
   const handleClickNavMenu = (data: {
     itemKey?: React.ReactText | undefined;
@@ -69,9 +69,13 @@ export default function SidebarMenus() {
 
   return (
     // <section className="flex flex-col h-full">
-    <Sider>
-      <Logo />
+    <Sider >
+      {/* <Logo /> */}
       <Nav
+      header={{
+        logo: <IconSemiLogo style={{ height: '36px', fontSize: 36 }} />,
+        text: 'Admin 后台'
+    }}
         style={{ height: "100%" }}
         defaultSelectedKeys={["Home"]}
         selectedKeys={selectedKeys}

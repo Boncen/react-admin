@@ -25,14 +25,12 @@ function resolveComponent(path: string) {
  */
 export function usePermissionRoutes() {
   const permissions = useUserPermission();
-  console.log('permissions', permissions); // 这里的组件还不是jsx element
   return useMemo(() => {
     const flattenedPermissions = flattenTrees(permissions!);
     const permissionRoutes = transformPermissionToMenuRoutes(
       permissions || [],
       flattenedPermissions,
     );
-    console.log('permissionRoutes', permissionRoutes);
 
     return [...permissionRoutes];
   }, [permissions]);

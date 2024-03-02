@@ -13,18 +13,7 @@ const PAGE_NOT_FOUND_ROUTE: AppRouteObject = {
 };
 
 export default function Router() {
-  //const permissionRoutes = usePermissionRoutes();
-  // const asyncRoutes: AppRouteObject = {
-  //   path: '/',
-  //   element: (
-  //       <DashboardLayout />
-  //   ),
-  //   children: [{ index: true, element: <Navigate to={"/dashboard/workbench"} replace /> }],
-  // };
   const routes = [LoginRoute,MenuRoutes, PAGE_NOT_FOUND_ROUTE];
-
   const router = createBrowserRouter(routes as unknown as RouteObject[]);
-  console.log(router);
-  
   return <RouterProvider router={router} />;
 }

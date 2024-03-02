@@ -9,15 +9,9 @@ export default function Index() {
     { tab: '快速起步', itemKey: '2', text: '快速起步', closable: true },
     { tab: '帮助', itemKey: '3', text: '帮助' },
 ]);
-  function close(key: string) {
-    const newTabList = [...tabList];
-    const closeIndex = newTabList.findIndex((t) => t.itemKey === key);
-    newTabList.splice(closeIndex, 1);
-    setTabList(newTabList);
-  }
   return (
     <>
-      <Form layout="horizontal" onValueChange={(values) => console.log(values)}>
+      <Form layout="horizontal">
         <Form.Input field="UserName" label="用户名2" style={{ width: 80 }} />
         <Form.Input
           field="Password"
