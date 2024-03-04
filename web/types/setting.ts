@@ -1,4 +1,5 @@
 export interface Setting {
     isDarkMode: boolean,
-    lang?:string
+    lang?:string,
+    isUseMultitab: boolean
 }

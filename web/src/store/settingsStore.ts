@@ -8,9 +8,10 @@ type settingsStore = {
   updateSettings: (setting: Setting) => void;
   toggleDarkMode: (isDarkMode: boolean) => void;
   updateLanguage: (lang: string) => void;
+  toggleMultiTab: (val: boolean) => void;
 };
 
-const useSettingsStore = create<settingsStore>((set, get) => ({
+export const useSettingsStore = create<settingsStore>((set, get) => ({
   settings: getItem<Setting>(StorageEnum.Settings) || ({} as Setting),
   updateSettings: (setting: Setting) => {
     set(() => ({
@@ -31,7 +32,14 @@ const useSettingsStore = create<settingsStore>((set, get) => ({
       settings: setting,
     }));
     setItem(StorageEnum.Settings, setting);
-  }
+  },
+  toggleMultiTab : (val: boolean) => {
+    const setting = { ...get().settings, isUseMultitab: val};
+    set(() => ({
+      settings: setting,
+    }));
+    setItem(StorageEnum.Settings, setting);
+  },
 }));
 
 export const useDarkMode = () =>
@@ -40,4 +48,7 @@ export const useToggleDarkMode = () =>
   useSettingsStore((state) => state.toggleDarkMode);
 export const useLanguage = () =>
   useSettingsStore((state) => state.settings.lang);
-export const useUpdateLang = () => useSettingsStore((state)=> state.updateLanguage)
+export const useUpdateLang = () => useSettingsStore((state)=> state.updateLanguage);
+
+export const useToggleMultiTab = () =>
+  useSettingsStore((state) => state.toggleMultiTab);

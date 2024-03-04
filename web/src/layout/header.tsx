@@ -25,6 +25,7 @@ import { useRouter } from "@/router/hook";
 import { useUserActions } from "@/store/userStore";
 import { changeTheme } from "@/router/utils";
 import { useTranslation } from "react-i18next";
+import Setting from "./setting";
 
 export default function Header() {
   const { t, i18n } = useTranslation();
@@ -154,12 +155,11 @@ export default function Header() {
             </Dropdown>
           </Space>
           <SideSheet
-            title="设置"
+            title={t('disp.setting')}
             visible={showSideSheet}
             onCancel={() => setShowSideSheet(false)}
           >
-            <p>This is the content of a basic sidesheet.</p>
-            <p>Here is more content...</p>
+            <Setting />
           </SideSheet>
           {/* </div> */}
         </Nav.Footer>

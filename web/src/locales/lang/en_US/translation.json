@@ -143,6 +143,12 @@
       "closeRight": "Close Right",
       "fullscreen": "FullScreen",
       "refresh": "Refresh"
+    },
+    "setting": {
+      "ifUseMultiTab":"If use multiTab"
+    },
+    "other": {
+      "apperance": "Apperance"
     }
   }
 }

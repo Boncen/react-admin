@@ -142,6 +142,12 @@
       "closeRight": "关闭右侧标签页",
       "fullscreen": "内容全屏",
       "refresh": "刷新"
+    },
+    "setting": {
+      "ifUseMultiTab":"是否使用多标签页"
+    },
+    "other": {
+      "apperance": "外观"
     }
   }
 }

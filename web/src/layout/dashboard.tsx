@@ -3,10 +3,14 @@ import Header from "@/layout/header";
 import SidebarMenus from "@/layout/menus";
 import { Outlet } from "react-router-dom";
 import MultiTabs from "./multi-tabs";
+import { useSettingsStore } from "@/store/settingsStore";import { useState } from "react";
+
 
 export default function DashboardLayout() {
   const { Content } = Layout;
-  const isMultiTabs = true; //todo read from store
+  const settingStore = useSettingsStore();
+  
+  const [isMultiTabs] = useState(settingStore.settings.isUseMultitab ?? true);
   return (
     <Layout style={{ height: "100%" }}>
       <SidebarMenus />
