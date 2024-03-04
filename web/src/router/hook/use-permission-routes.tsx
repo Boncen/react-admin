@@ -11,6 +11,7 @@ import { Permission } from '#/entity';
 import { BasicStatus, PermissionType } from '#/enum';
 import { AppRouteObject } from '#/router';
 import { isEmpty } from 'ramda';
+import { usePublicRoutes } from './use-public-routes';
 
 // 使用 import.meta.glob 获取所有路由组件
 const pages = import.meta.glob('/src/pages/**/*.tsx');
@@ -25,6 +26,12 @@ function resolveComponent(path: string) {
  */
 export function usePermissionRoutes() {
   const permissions = useUserPermission();
+  // add public routes
+  const publicRoutes = usePublicRoutes();
+  for (let index = 0; index < publicRoutes.length; index++) {
+    const element = publicRoutes[index];
+    permissions.push(element);
+  }
   return useMemo(() => {
     const flattenedPermissions = flattenTrees(permissions!);
     const permissionRoutes = transformPermissionToMenuRoutes(

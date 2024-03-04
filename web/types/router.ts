@@ -42,6 +42,7 @@ export interface RouteMeta {
    * external link and iframe need
    */
   frameSrc?: string;
+  isPublic?: boolean;
 }
 export type AppRouteObject = {
   order?: number;

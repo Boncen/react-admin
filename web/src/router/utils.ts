@@ -51,3 +51,12 @@ export function flattenMenuRoutes(routes: AppRouteObject[]) {
     return prev;
   }, []);
 }
+
+export const changeTheme = (isDark: boolean) => {
+  const body = document.body;
+  if (!isDark) {
+    body.removeAttribute("theme-mode");
+  } else {
+    body.setAttribute("theme-mode", "dark");
+  }
+};

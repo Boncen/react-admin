@@ -6,6 +6,7 @@ import { Outlet } from "react-router-dom";
 const UserPage = lazy(() => import(`@/pages/sys/user/user`));
 const RolePage = lazy(() => import(`@/pages/sys/role/index`));
 const SettingPage = lazy(() => import(`@/pages/sys/setting/index`));
+const MyPage = lazy(() => import(`@/pages/sys/my`));
 
 const SysRoute: AppRouteObject = {
   order: 9,
@@ -35,6 +36,10 @@ const SysRoute: AppRouteObject = {
     {
       path: "settings",
       element: <SettingPage />,
+    },
+    {
+      path: "my",
+      element: <MyPage />,
     },
   ],
 };

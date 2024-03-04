@@ -2,13 +2,15 @@ import { useEffect, useState } from 'react';
 import { useMatches, useOutlet } from 'react-router-dom';
 import { useFlattenedRoutes } from './use-flattened-routes';
 import { RouteMeta } from '#/router';
+import { useRouter } from '.';
+import PageMapper from '@/utils/page-mapper';
 
 /**
  * 返回当前路由Meta信息
  */
 export function useMatchRouteMeta() {
   const [matchRouteMeta, setMatchRouteMeta] = useState<RouteMeta>();
-
+  const {push} = useRouter();
   // 获取路由组件实例
   const children = useOutlet();
   
@@ -21,6 +23,7 @@ export function useMatchRouteMeta() {
   useEffect(() => {
     // 获取当前匹配的路由
     const lastRoute = matchs.at(-1);
+    
     const currentRouteMeta = flattenedRoutes.find(
       (item) => item.key === lastRoute?.pathname || `${item.key}/` === lastRoute?.pathname,
       );
@@ -30,10 +33,12 @@ export function useMatchRouteMeta() {
         currentRouteMeta.outlet = children;
         setMatchRouteMeta(currentRouteMeta);
       }
+    console.log('currentRouteMeta', currentRouteMeta);
+    
     } else {
-      // push(PageMapper.Home);
+      push(PageMapper.Page404);
     }
-  }, [children, flattenedRoutes, matchs]);
+  }, [children, flattenedRoutes, matchs, push]);
 
   return matchRouteMeta;
 }

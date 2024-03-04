@@ -2,6 +2,7 @@ import { lazy } from "react";
 import { AppRouteObject } from "#/router";
 import { RouterProvider, Navigate,RouteObject, createBrowserRouter } from "react-router-dom";
 import { MenuRoutes } from "./routes/menu-routes";
+import PageMapper from "@/utils/page-mapper";
 
 const LoginRoute: AppRouteObject = {
   path: "/login",
@@ -9,7 +10,7 @@ const LoginRoute: AppRouteObject = {
 };
 const PAGE_NOT_FOUND_ROUTE: AppRouteObject = {
   path: "*",
-  element: <Navigate to="/404" replace />,
+  element: <Navigate to={PageMapper.Page404} replace />,
 };
 
 export default function Router() {

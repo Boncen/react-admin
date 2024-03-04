@@ -14,6 +14,7 @@ export interface UserInfo {
   role?: Role;
   status?: BasicStatus;
   permissions?: Permission[];
+  token?: string;
 }
 
 export interface Organization {

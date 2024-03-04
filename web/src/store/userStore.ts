@@ -12,18 +12,18 @@ import { create } from 'zustand'
 
 const useUserStore = create((set) => ({
     userinfo: getItem<UserInfo>(StorageEnum.User) || {},
-    userToken: getItem<UserToken>(StorageEnum.Token) || {},
+    userToken: getItem<UserToken>(StorageEnum.Token),
     actions: {
         setUserInfo: (userInfo: unknown) => {
           set({ userInfo });
           setItem(StorageEnum.User, userInfo);
         },
         setUserToken: (userToken: unknown) => {
-          set({ userToken });
-          setItem(StorageEnum.Token, userToken);
+            set({ userToken });
+            setItem(StorageEnum.Token, userToken);
         },
         clearUserInfoAndToken() {
-          set({ userInfo: {}, userToken: {} });
+          set({ userInfo: {}, userToken: '' });
           removeItem(StorageEnum.User);
           removeItem(StorageEnum.Token);
         },
@@ -71,9 +71,32 @@ const useUserStore = create((set) => ({
         frameSrc: '',
       },
     ],
-  },]
+  },
+  {
+    id: '5733704222120999',
+    parentId: '',
+    label: '系统管理',
+    name: '系统管理',
+    icon: '',
+    type: PermissionType.CATALOGUE,
+    route: 'sys',
+    children: [
+      // {
+      //   id: '9884486809510482',
+      //   parentId: '5733704222120999',
+      //   label: '个人信息',
+      //   name: '个人信息',
+      //   type: PermissionType.MENU,
+      //   route: 'my',
+      //   component: '/sys/my.tsx',
+      //   frameSrc: '',
+      // },
+    ],
+  },
+]
 
   export const useUserInfo = () => useUserStore((state: any) => state.userInfo);
   export const useUserToken = () => useUserStore((state: any) => state.userToken);
   export const useUserPermission = () => useUserStore(() => permissionList); // todo
   export const useUserActions = () => useUserStore((state: any) => state.actions);
+  export const useIfUserLogin = () => useUserStore((state: any)=> state.userToken != null && state.userToken !== '' && state.userToken != 'null')
