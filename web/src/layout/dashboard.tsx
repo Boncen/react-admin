@@ -21,17 +21,6 @@ export default function DashboardLayout() {
           {isMultiTabs ? <MultiTabs /> : <Outlet />}
         </Content>
       </Layout>
-      {/* <Footer
-                style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    padding: '20px',
-                    color: 'var(--semi-color-text-2)',
-                    backgroundColor: 'rgba(var(--semi-grey-0), 1)',
-                }}
-            >
-               <FooterContent/>
-            </Footer> */}
     </Layout>
   );
 }

@@ -1,3 +1,4 @@
 export interface Setting {
-    isDarkMode: boolean
+    isDarkMode: boolean,
+    lang?:string
 }

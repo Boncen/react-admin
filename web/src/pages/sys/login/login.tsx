@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import "./login.less";
 import { Form, Button, Card, Notification } from "@douyinfe/semi-ui";
 import { useRouter } from "@/router/hook";
 import PageMapper from "@/utils/page-mapper";
 import { useUserActions } from "@/store/userStore";
 import { useDarkMode } from "@/store/settingsStore";
 import { changeTheme } from "@/router/utils";
+import { useTranslation } from "react-i18next";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -13,6 +13,7 @@ export default function Login() {
   const { push } = useRouter();
   const { setUserToken } = useUserActions();
   const isDark = useDarkMode();
+  const {t} = useTranslation();
 
   useEffect(() => {
     changeTheme(isDark);
@@ -23,14 +24,14 @@ export default function Login() {
     if (username === "admin" && password === "admin") {
       setUserToken("1234567890");
       Notification.success({
-        title: "登录成功",
+        title: t('sys.login.loginSuccessTitle'),
         duration: 3,
       });
       push(PageMapper.Home);
     } else {
       Notification.error({
-        title: "登录失败",
-        content: "用户名或密码错误",
+        title: t('sys.api.errorTip'),
+        content: t('AuthenticationFail'),
         duration: 3,
       });
     }
@@ -46,7 +47,7 @@ export default function Login() {
         className="w-1/5 min-w-64"
         shadows="hover"
         bordered={true}
-        title="欢迎使用"
+        title={t('sys.login.signInPrimaryTitle')}
       >
         <Form onSubmit={handleSubmit}>
           <Form.Input
@@ -54,27 +55,27 @@ export default function Login() {
             label="用户名"
             onChange={(value) => setUsername(value)}
             trigger="blur"
-            rules={[{ required: true, message: "请输入用户名" }]}
+            rules={[{ required: true, message: t('validation.needAccount') }]}
           />
           <Form.Input
             field="Password"
             label={{
-              text: "密码",
+              text: t('sys.login.password'),
             }}
             mode="password"
             onChange={(value) => setPassword(value)}
             trigger="blur"
             rules={[
-              { required: true, message: "请输入密码" },
+              { required: true, message: t('validation.needPassword') },
               {
                 validator: (_, value) => value?.length >= 5,
-                message: "密码长度不够",
+                message: t('validation.passwordLengthError'),
               },
             ]}
           />
 
           <Button block htmlType="submit" onSubmit={handleSubmit}>
-            登录
+            {t('sys.login.signInFormTitle')}
           </Button>
         </Form>
       </Card>

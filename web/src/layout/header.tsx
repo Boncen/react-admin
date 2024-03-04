@@ -14,32 +14,48 @@ import {
 } from "@douyinfe/semi-icons";
 import { useEffect, useState } from "react";
 import MyBreadcrumb from "./breadcrumb";
-import { useDarkMode, useToggleDarkMode } from "@/store/settingsStore";
+import {
+  useDarkMode,
+  useToggleDarkMode,
+  useLanguage,
+  useUpdateLang,
+} from "@/store/settingsStore";
 import PageMapper from "@/utils/page-mapper";
 import { useRouter } from "@/router/hook";
 import { useUserActions } from "@/store/userStore";
 import { changeTheme } from "@/router/utils";
+import { useTranslation } from "react-i18next";
 
 export default function Header() {
+  const { t, i18n } = useTranslation();
   const isDark = useDarkMode();
+  const lang = useLanguage();
+  const updateLang = useUpdateLang();
   const { push } = useRouter();
   const { clearUserInfoAndToken } = useUserActions();
   const [isDarkMode, setIsDarkMode] = useState(isDark);
   const [showSideSheet, setShowSideSheet] = useState(false);
 
   useEffect(() => {
-    changeTheme(isDark);
+    changeTheme(isDarkMode);
+    if (lang) {
+      i18n.changeLanguage(lang);
+    }
   });
   const toggleDark = useToggleDarkMode();
   const switchDarkLight = () => {
     setIsDarkMode(!isDarkMode);
-    toggleDark(!isDark);
-    changeTheme(isDark);
+    toggleDark(!isDarkMode);
+    changeTheme(!isDarkMode);
   };
 
   function handleLogout(): void {
     clearUserInfoAndToken();
     push(PageMapper.Login);
+  }
+  function handleChangeLanguage(key: string) {
+    i18n.changeLanguage(key);
+    updateLang(key);
   }
 
   return (
@@ -57,12 +73,23 @@ export default function Header() {
           <Space spacing="medium">
             <Dropdown
               trigger={"click"}
+              clickToHide={true}
               render={
                 <Dropdown.Menu>
-                  <Dropdown.Item onClick={() => push(PageMapper.MyInfo)}>
+                  <Dropdown.Item
+                    onClick={() => handleChangeLanguage("zh")}
+                    className={lang === 'zh'? 'text-blue-500	' : '	'}
+                  >
                     简体中文
                   </Dropdown.Item>
-                  <Dropdown.Item onClick={handleLogout}>English</Dropdown.Item>
+                  <Dropdown.Item
+                    onClick={() => {
+                      handleChangeLanguage("en");
+                    }}
+                    className={lang === 'en'? 'text-blue-500	' : ''}
+                  >
+                    English
+                  </Dropdown.Item>
                 </Dropdown.Menu>
               }
             >
@@ -96,7 +123,10 @@ export default function Header() {
             <Button
               theme="borderless"
               icon={
-                <IconSetting style={{ color: "var(--semi-color-text-0)" }} size="large" />
+                <IconSetting
+                  style={{ color: "var(--semi-color-text-0)" }}
+                  size="large"
+                />
               }
               onClick={() => setShowSideSheet(!showSideSheet)}
               style={{
@@ -110,9 +140,11 @@ export default function Header() {
               render={
                 <Dropdown.Menu>
                   <Dropdown.Item onClick={() => push(PageMapper.MyInfo)}>
-                    个人信息
+                    {t("header.myinfo")}
                   </Dropdown.Item>
-                  <Dropdown.Item onClick={handleLogout}>退出登录</Dropdown.Item>
+                  <Dropdown.Item onClick={handleLogout}>
+                    {t("header.logout")}
+                  </Dropdown.Item>
                 </Dropdown.Menu>
               }
             >
@@ -121,7 +153,11 @@ export default function Header() {
               </Avatar>
             </Dropdown>
           </Space>
-          <SideSheet title="设置" visible={showSideSheet} onCancel={()=>setShowSideSheet(false)}>
+          <SideSheet
+            title="设置"
+            visible={showSideSheet}
+            onCancel={() => setShowSideSheet(false)}
+          >
             <p>This is the content of a basic sidesheet.</p>
             <p>Here is more content...</p>
           </SideSheet>

@@ -5,20 +5,39 @@ import { create } from "zustand";
 
 type settingsStore = {
   settings: Setting;
-  toggleDarkMode: (isDark: boolean) => void;
+  updateSettings: (setting: Setting) => void;
+  toggleDarkMode: (isDarkMode: boolean) => void;
+  updateLanguage: (lang: string) => void;
 };
 
-const useSettingsStore = create<settingsStore>((set) => ({
+const useSettingsStore = create<settingsStore>((set, get) => ({
   settings: getItem<Setting>(StorageEnum.Settings) || ({} as Setting),
-  toggleDarkMode: (isDark: boolean) => {
-    set((state) => ({
-      settings: { ...state, isDarkMode: isDark },
+  updateSettings: (setting: Setting) => {
+    set(() => ({
+      settings: setting,
     }));
-    setItem(StorageEnum.Settings, { isDarkMode: isDark })
+    setItem(StorageEnum.Settings, setting);
   },
+  toggleDarkMode : (isDarkMode: boolean) => {
+    const setting = { ...get().settings, isDarkMode: isDarkMode};
+    set(() => ({
+      settings: setting,
+    }));
+    setItem(StorageEnum.Settings, setting);
+  },
+  updateLanguage: (lang: string) => {
+    const setting = { ...get().settings, lang: lang};
+    set(() => ({
+      settings: setting,
+    }));
+    setItem(StorageEnum.Settings, setting);
+  }
 }));
 
 export const useDarkMode = () =>
   useSettingsStore((state) => state.settings.isDarkMode);
 export const useToggleDarkMode = () =>
   useSettingsStore((state) => state.toggleDarkMode);
+export const useLanguage = () =>
+  useSettingsStore((state) => state.settings.lang);
+export const useUpdateLang = () => useSettingsStore((state)=> state.updateLanguage)
