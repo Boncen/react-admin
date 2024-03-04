@@ -22,10 +22,10 @@
     "feedback": "Feedback",
     "loading": "Loading",
     "login": "Login",
-    "logout": "Logout",
     "setting": "Setting"
   },
   "header": {
+    "logout": "Logout",
     "myinfo": "Personal Page",
     "subtitle": "Subtitle",
     "title": "Title"

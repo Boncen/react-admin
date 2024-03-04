@@ -52,7 +52,7 @@ export default function Login() {
         <Form onSubmit={handleSubmit}>
           <Form.Input
             field="UserName"
-            label="用户名"
+            label={t('sys.menu.user.account')}
             onChange={(value) => setUsername(value)}
             trigger="blur"
             rules={[{ required: true, message: t('validation.needAccount') }]}

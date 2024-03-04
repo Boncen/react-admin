@@ -2,6 +2,7 @@ import { TabPane, Tabs } from "@douyinfe/semi-ui";
 import { useEffect, useState } from "react";
 import useKeepAlive from "@/hooks/use-keepalive";
 import { useRouter } from "@/router/hook";
+import { useTranslation } from "react-i18next";
 
 export default function MultiTabs() {
   const { push } = useRouter();
@@ -9,6 +10,7 @@ export default function MultiTabs() {
   const [tabList, setTabList] = useState<{ tab: string; itemKey: string }[]>(
     []
   );
+  const { t } = useTranslation();
   const handleTabChange = (key: string) => {
     if (key) {
       push(key);
@@ -20,11 +22,11 @@ export default function MultiTabs() {
     tabs.map((x) => {
       const tabTabItem = tabList.find((z) => z.itemKey === x.key);
       if (!tabTabItem) {
-        setTabList((prev) => [...prev, { tab: x.label, itemKey: x.key }]);
+        setTabList((prev) => [...prev, { tab: t(x.label), itemKey: x.key }]);
       }
     });
     setDefaultKey(activeTabRoutePath ?? "");
-  }, [tabs, tabList, activeTabRoutePath, defaultKey]);
+  }, [tabs, tabList, activeTabRoutePath, defaultKey, t]);
 
   const IndexTab = (key: string) => {
     const tab = tabList.find((x) => x.itemKey == key);
@@ -50,14 +52,10 @@ export default function MultiTabs() {
         <TabPane
           itemKey={l.key}
           key={l.key}
-          closable={tabList.length>1}
+          closable={tabList.length > 1}
           tab={IndexTab(l.key)}
         >
-          <div
-            className="h-full p-2"
-          >
-            {l.children}
-          </div>
+          <div className="h-full p-2">{l.children}</div>
         </TabPane>
       ))}
     </Tabs>
