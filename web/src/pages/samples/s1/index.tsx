@@ -1,9 +1,14 @@
 import { Form, Tooltip } from "@douyinfe/semi-ui";
 import { IconHelpCircle } from '@douyinfe/semi-icons';
+import { useEffect } from "react";
 
 
 export default function Index(){
     const { Option } = Form.Select;
+    useEffect(()=>{
+        console.log("s1 useEffect invoked");
+        
+    }, [])
     return (
         <Form layout='horizontal' onValueChange={values=>console.log(values)}>
             <Form.Input field='UserName' label='用户名1' style={{ width: 80 }}/>

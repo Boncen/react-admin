@@ -1,6 +1,5 @@
 import { AppRouteObject } from "#/router";
-import { CircleLoading } from "@/components/loading";
-import { lazy, Suspense } from "react";
+import { lazy } from "react";
 import { Outlet } from "react-router-dom";
 
 const UserPage = lazy(() => import(`@/pages/sys/user/user`));
@@ -12,9 +11,7 @@ const SysRoute: AppRouteObject = {
   order: 9,
   path: "sys",
   element: (
-    <Suspense fallback={<CircleLoading />}>
       <Outlet />
-    </Suspense>
   ),
   meta: {
     label: "sys.menu.user",

@@ -1,20 +1,16 @@
 // import { isEmpty } from 'ramda';
-import { Suspense, lazy, useMemo } from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
-
-// import { Iconify } from '@/components/icon';
-import { CircleLoading } from '@/components/loading';
-import { useUserPermission } from '@/store/userStore';
-import { flattenTrees } from '@/utils/tree';
-
-import { Permission } from '#/entity';
-import { BasicStatus, PermissionType } from '#/enum';
-import { AppRouteObject } from '#/router';
-import { isEmpty } from 'ramda';
-import { usePublicRoutes } from './use-public-routes';
+import { lazy, useMemo } from "react";
+import { Navigate, Outlet } from "react-router-dom";
+import { useUserPermission } from "@/store/userStore";
+import { flattenTrees } from "@/utils/tree";
+import { Permission } from "#/entity";
+import { BasicStatus, PermissionType } from "#/enum";
+import { AppRouteObject } from "#/router";
+import { isEmpty } from "ramda";
+import { usePublicRoutes } from "./use-public-routes";
 
 // 使用 import.meta.glob 获取所有路由组件
-const pages = import.meta.glob('/src/pages/**/*.tsx');
+const pages = import.meta.glob("/src/pages/**/*.tsx");
 
 // 构建绝对路径的函数
 function resolveComponent(path: string) {
@@ -36,7 +32,7 @@ export function usePermissionRoutes() {
     const flattenedPermissions = flattenTrees(permissions!);
     const permissionRoutes = transformPermissionToMenuRoutes(
       permissions || [],
-      flattenedPermissions,
+      flattenedPermissions
     );
 
     return [...permissionRoutes];
@@ -50,7 +46,7 @@ export function usePermissionRoutes() {
  */
 function transformPermissionToMenuRoutes(
   permissions: Permission[],
-  flattenedPermissions: Permission[],
+  flattenedPermissions: Permission[]
 ) {
   return permissions.map((permission) => {
     const {
@@ -84,13 +80,12 @@ function transformPermissionToMenuRoutes(
     if (type === PermissionType.CATALOGUE) {
       appRoute.meta!.hideTab = true;
       if (!parentId) {
-        appRoute.element = (
-          <Suspense fallback={<CircleLoading />}>
-            <Outlet />
-          </Suspense>
-        );
+        appRoute.element = <Outlet />;
       }
-      appRoute.children = transformPermissionToMenuRoutes(children, flattenedPermissions);
+      appRoute.children = transformPermissionToMenuRoutes(
+        children,
+        flattenedPermissions
+      );
       if (!isEmpty(children)) {
         appRoute.children.unshift({
           index: true,
@@ -117,12 +112,24 @@ function transformPermissionToMenuRoutes(
  * @param {string} route - parent permission route
  * @returns {string} - The complete route after splicing
  */
-function getCompleteRoute(permission: Permission, flattenedPermissions: Permission[], route = '') {
-  const currentRoute = route ? `/${permission.route}${route}` : `/${permission.route}`;
+function getCompleteRoute(
+  permission: Permission,
+  flattenedPermissions: Permission[],
+  route = ""
+) {
+  const currentRoute = route
+    ? `/${permission.route}${route}`
+    : `/${permission.route}`;
 
   if (permission.parentId) {
-    const parentPermission = flattenedPermissions.find((p) => p.id === permission.parentId)!;
-    return getCompleteRoute(parentPermission, flattenedPermissions, currentRoute);
+    const parentPermission = flattenedPermissions.find(
+      (p) => p.id === permission.parentId
+    )!;
+    return getCompleteRoute(
+      parentPermission,
+      flattenedPermissions,
+      currentRoute
+    );
   }
 
   return currentRoute;

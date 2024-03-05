@@ -1,13 +1,15 @@
 import { RouteMeta } from "#/router";
-import { useMatchRouteMeta, useRouter } from "@/router/hook";
+import { useMatchRouteMeta } from "@/router/hook";
+import PageMapper from "@/utils/page-mapper";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export type KeepAliveTab = RouteMeta & {
   children: any;
 };
 
 export default function useKeepAlive() {
-  const { push } = useRouter();
+  const navigate = useNavigate();
   const [tabs, setTabs] = useState<KeepAliveTab[]>([]);
   const [activeTabRoutePath, setActiveTabRoutePath] = useState<string>();
   const currentRouteMeta = useMatchRouteMeta();
@@ -23,35 +25,58 @@ export default function useKeepAlive() {
     setTabs(tabsCopy);
     setNextActiveTab(index);
   };
-  const closeOthers = () => {};
-  const closeLeft = () => {};
-  const closeRight = () => {};
-  const refreshTab = () => {};
+  const closeOthers = (key: string) => {
+    const tab = tabs.find((x) => x.key === key);
+    if (tab) {
+      setTabs([tab]);
+    }
+  };
+  const closeLeft = (key: string) => {
+    const tabIndex = tabs.findIndex((x) => x.key === key);
+    if (tabIndex > -1) {
+      setTabs(tabs.slice(tabIndex));
+    }
+    setNextActiveTab(tabIndex);
+  };
+  const closeRight = (key: string) => {
+    const tabIndex = tabs.findIndex((x) => x.key === key);
+    if (tabIndex > -1) {
+      setTabs(tabs.slice(0, tabIndex + 1));
+    }
+    setNextActiveTab(tabIndex);
+  };
+  const refreshTab = (key: string) => {
+    const tabsCopy = tabs;
+    const tab = tabsCopy.find(x=>x.key === key);
+    if (tab) {
+      tab.timeStamp = getKey();
+      setTabs(tabsCopy);
+    }
+  };
+  const closeAll = () => {
+    setTabs([]);
+    navigate(PageMapper.Home);
+  };
   /**
    * 自动选择下一个tab,默认选中左侧的tab
    */
   const setNextActiveTab = (closeIndex?: number) => {
     let next = null;
-    console.log(closeIndex, tabs, next);
     if (closeIndex != null && closeIndex > -1) {
       next = tabs.at(closeIndex!);
-      console.log(closeIndex, tabs, next);
-      
       if (!next) {
         next = tabs.at(closeIndex! + 1);
       }
-    } 
+    }
     if (!next) {
       next = tabs.at(-1);
     }
     if (next?.key) {
-      push(next!.key);
+      navigate(next!.key);
     }
   };
 
   useEffect(() => {
-    console.log(1, currentRouteMeta);
-    
     if (!currentRouteMeta) {
       return;
     }
@@ -67,7 +92,7 @@ export default function useKeepAlive() {
       ]);
     }
     setActiveTabRoutePath(currentRouteMeta.key);
-  }, [currentRouteMeta, tabs]);
+  }, [currentRouteMeta]);
 
   return {
     tabs,
@@ -77,6 +102,7 @@ export default function useKeepAlive() {
     closeOthers,
     closeRight,
     refreshTab,
+    closeAll,
   };
 }
 function getKey() {

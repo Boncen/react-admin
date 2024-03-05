@@ -135,6 +135,12 @@
       },
       "workbench": "Workbench"
     },
+    "other": {
+      "apperance": "Apperance"
+    },
+    "setting": {
+      "ifUseMultiTab": "Use multiTab"
+    },
     "tab": {
       "close": "Close",
       "closeAll": "Close All",
@@ -143,12 +149,6 @@
       "closeRight": "Close Right",
       "fullscreen": "FullScreen",
       "refresh": "Refresh"
-    },
-    "setting": {
-      "ifUseMultiTab":"If use multiTab"
-    },
-    "other": {
-      "apperance": "Apperance"
     }
   }
 }

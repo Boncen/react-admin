@@ -23,22 +23,18 @@ export function useMatchRouteMeta() {
   useEffect(() => {
     // 获取当前匹配的路由
     const lastRoute = matchs.at(-1);
-    
     const currentRouteMeta = flattenedRoutes.find(
       (item) => item.key === lastRoute?.pathname || `${item.key}/` === lastRoute?.pathname,
       );
-      
     if (currentRouteMeta) {
       if (!currentRouteMeta.hideTab) { 
         currentRouteMeta.outlet = children;
         setMatchRouteMeta(currentRouteMeta);
       }
-    console.log('currentRouteMeta', currentRouteMeta);
-    
     } else {
       push(PageMapper.Page404);
     }
-  }, [children, flattenedRoutes, matchs, push]);
+  }, [matchs]);
 
   return matchRouteMeta;
 }

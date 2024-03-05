@@ -1,6 +1,5 @@
 import { AppRouteObject } from "#/router";
-import { CircleLoading } from "@/components/loading";
-import { lazy, Suspense } from "react";
+import { lazy } from "react";
 import { Outlet } from "react-router-dom";
 
 const Page403 = lazy(() => import(`@/pages/error/page403`));
@@ -11,9 +10,7 @@ const ErrorRoute: AppRouteObject = {
   order: 10,
   path: "error",
   element: (
-    <Suspense fallback={<CircleLoading />}>
       <Outlet />
-    </Suspense>
   ),
   meta: {
     label: "",

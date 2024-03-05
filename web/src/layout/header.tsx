@@ -26,6 +26,7 @@ import { useUserActions } from "@/store/userStore";
 import { changeTheme } from "@/router/utils";
 import { useTranslation } from "react-i18next";
 import Setting from "./setting";
+import { LocalEnum } from "#/enum";
 
 export default function Header() {
   const { t, i18n } = useTranslation();
@@ -42,7 +43,7 @@ export default function Header() {
     if (lang) {
       i18n.changeLanguage(lang);
     }
-  });
+  }, [isDarkMode]);
   const toggleDark = useToggleDarkMode();
   const switchDarkLight = () => {
     setIsDarkMode(!isDarkMode);
@@ -78,16 +79,16 @@ export default function Header() {
               render={
                 <Dropdown.Menu>
                   <Dropdown.Item
-                    onClick={() => handleChangeLanguage("zh")}
-                    className={lang === 'zh'? 'text-blue-500	' : '	'}
+                    onClick={() => handleChangeLanguage(LocalEnum.zh_CN)}
+                    className={lang === LocalEnum.zh_CN? 'text-blue-500	' : '	'}
                   >
                     简体中文
                   </Dropdown.Item>
                   <Dropdown.Item
                     onClick={() => {
-                      handleChangeLanguage("en");
+                      handleChangeLanguage(LocalEnum.en_US);
                     }}
-                    className={lang === 'en'? 'text-blue-500	' : ''}
+                    className={lang === LocalEnum.en_US? 'text-blue-500	' : ''}
                   >
                     English
                   </Dropdown.Item>

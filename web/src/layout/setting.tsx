@@ -1,7 +1,6 @@
 import { useSettingsStore, useToggleMultiTab } from "@/store/settingsStore";
 import { Col, Form, Row, Switch } from "@douyinfe/semi-ui";
 import Section from "@douyinfe/semi-ui/lib/es/form/section";
-import Title from "@douyinfe/semi-ui/lib/es/typography/title";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -22,7 +21,7 @@ export default function Setting() {
         <Section text={t("sys.other.apperance")}>
           <Row>
             <Col span={12}>
-              <Title heading={6} style={{ margin: 8 }}>{t('sys.setting.ifUseMultiTab')}</Title>
+              <span style={{ margin: 8 }}>{t('sys.setting.ifUseMultiTab')}</span>
               <Switch checked={multiTab} onChange={(multiTab)=>setMultiTab(multiTab)}/>
             </Col>
           </Row>
