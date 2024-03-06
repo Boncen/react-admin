@@ -3,52 +3,11 @@ import { IconSemiLogo } from "@douyinfe/semi-icons";
 import { Icon } from '@iconify/react';
 import { useEffect, useState } from "react";
 import { useRouter } from "@/router/hook";
-// import Logo from "./logo";
 import useKeepAlive from "@/hooks/use-keepalive";
 import { usePermissionRoutes } from "@/router/hook/use-permission-routes";
 import { useTranslation } from "react-i18next";
 import { NavItem } from "#/entity";
 import { AppRouteObject } from "#/router";
-
-// const menus: NavItem[] = [
-//   {
-//     itemKey: "setting",
-//     text: "设置",
-//     icon: <IconSetting size="large" />,
-//     items: [
-//       {
-//         itemKey: PageMapper.Users,
-//         text: "用户管理",
-//         icon: <IconUser size="large" />,
-//       },
-//       {
-//         itemKey: PageMapper.Roles,
-//         text: "角色管理",
-//         icon: <IconUser size="large" />,
-//       },
-//       {
-//         itemKey: PageMapper.Settings,
-//         text: "系统配置",
-//         icon: <IconUser size="large" />,
-//       },
-//     ],
-//   },
-//   {
-//     itemKey: "sample",
-//     text: "示例",
-//     icon: <IconSetting size="large" />,
-//     items: [
-//       {
-//         itemKey: "/sample/s1",
-//         text: "s1",
-//       },
-//       {
-//         itemKey: "/sample/s2",
-//         text: "s2",
-//       },
-//     ],
-//   },
-// ];
 
 function permission2Menu(permissions: AppRouteObject[], parentItem?: AppRouteObject):NavItem[] {
   const navItems: NavItem[] = [];
@@ -105,12 +64,11 @@ export default function SidebarMenus() {
         defaultSelectedKeys={["Home"]}
         selectedKeys={selectedKeys}
         items={[
-          // { itemKey: "/", text: `${t('common.homePage')}`, icon: <IconHome size="large" /> },
           ...navItems,
         ]}
         onClick={(data) => handleClickNavMenu(data)}
         footer={{
-          collapseButton: false,
+          collapseButton: true,
         }}
       />
     </Sider>

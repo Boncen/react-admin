@@ -156,7 +156,7 @@ export default function Header() {
             </Dropdown>
           </Space>
           <SideSheet
-            title={t('disp.setting')}
+            title={t('common.setting')}
             visible={showSideSheet}
             onCancel={() => setShowSideSheet(false)}
           >

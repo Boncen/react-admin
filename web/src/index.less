@@ -4,6 +4,7 @@
 
 html {
     height: 100%;
+    // overflow: -moz-hidden-unscrollable;
 }
 body {
     height: 100% !important;
@@ -13,3 +14,6 @@ body {
     width: 100% !important;
     height: 100% !important;
   }
+body::-webkit-scrollbar {
+    display: none;//Chorme
+}

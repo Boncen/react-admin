@@ -18,7 +18,7 @@ export default function DashboardLayout() {
         <Header />
         <Content
           style={{
-            padding: "2px 5px",
+            padding: "2px 2px",
             backgroundColor: "var(--semi-color-bg-0)",
           }}
         >

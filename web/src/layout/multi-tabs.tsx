@@ -31,13 +31,6 @@ export default function MultiTabs() {
   } = useKeepAlive();
 
   useEffect(() => {
-    // tabs.map((x) => {
-    //   const tabTabItem = tabList.find((z) => z.itemKey === x.key);
-    //   if (!tabTabItem) {
-    //     setTabList((prev) => [...prev, { tab: t(x.label), itemKey: x.key }]);
-    //   }
-    // });
-
     const newList = tabs.map((x) => {
       return { tab: t(x.label), itemKey: x.key };
     });
@@ -98,7 +91,7 @@ export default function MultiTabs() {
   };
   const renderTabBar = () => {
     return (
-      <div className="flex border-b border-solid border-gray-200">
+      <div className="flex border-b border-solid" style={{borderColor: 'var(--semi-color-fill-0)'}} >
         {/* <Space spacing='tight'> */}
         {tabList.map((tab) => (
           <Dropdown
@@ -112,15 +105,16 @@ export default function MultiTabs() {
               onMouseEnter={() => setHoverItemKey(tab.itemKey)}
               onMouseLeave={() => setHoverItemKey("")}
               onClick={() => push(tab.itemKey)}
-              className="relative min-w-30 border-solid border-t border-l border-r border-gray-200 px-6 py-1 rounded-t-md flex items-center h-8 mr-1"
+              className="relative min-w-30 border-solid border-t border-l border-r px-6 py-1 rounded-t-md flex items-center h-8 mr-1"
               style={{
                 background:
                   tab.itemKey === defaultKey
                     ? "#0064fa"
                     : tab.itemKey === hoverItemKey
-                    ? "#f6f8fa"
+                    ? "var(--semi-color-fill-0)"
                     : "",
-                color: tab.itemKey === defaultKey ? "#fff" : "",
+                color: tab.itemKey === defaultKey ? "#fff" : "var(--semi-color-text-0)",
+                borderColor: 'var(--semi-color-fill-0)'
               }}
               key={tab.itemKey}
             >
@@ -187,7 +181,7 @@ export default function MultiTabs() {
           closable={tabList.length > 1}
           tab={IndexTab(l.key)}
         >
-          <div key={l.timeStamp} className="h-full p-2">
+          <div key={l.timeStamp} className=" overflow-y-scroll" style={{height: 'calc(100vh - 108px)', msOverflowStyle: 'none'}}>
             {l.children}
           </div>
         </TabPane>
