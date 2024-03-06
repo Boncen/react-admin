@@ -6,6 +6,7 @@ import { useSettingsStore } from "./store/settingsStore.ts";
 import { LocalEnum } from "#/enum.ts";
 import { CircleLoading } from "./components/loading/circleSpin.tsx";
 import { Suspense } from "react";
+import "@/locales/i18n.ts";
 
 export default function App() {
   const settingStore = useSettingsStore();

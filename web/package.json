@@ -12,6 +12,7 @@
   "dependencies": {
     "@douyinfe/semi-icons": "^2.53.2",
     "@douyinfe/semi-ui": "^2.53.2",
+    "@types/mockjs": "^1.0.10",
     "@types/ramda": "^0.29.10",
     "@visactor/react-vchart": "^1.9.5",
     "@visactor/vchart-semi-theme": "^1.9.4",
@@ -19,6 +20,7 @@
     "i18next": "^23.10.0",
     "i18next-browser-languagedetector": "^7.2.0",
     "less": "^4.2.0",
+    "mockjs": "^1.1.0",
     "ramda": "^0.29.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

@@ -44,8 +44,6 @@ export default function SidebarMenus() {
     domEvent?: MouseEvent | undefined;
     isOpen?: boolean | undefined;
   }) => {
-    console.log('click menu item:', data);
-    
     if (data.itemKey && (data.itemKey as string).indexOf("/") === 0) {
       router.push(data.itemKey as string);
       setSelectedKeys([data.itemKey as string]);
@@ -56,6 +54,7 @@ export default function SidebarMenus() {
     <Sider >
       <Nav
       className="overflow-y-auto"
+      bodyStyle={{ height: 300 }}
       header={{
         logo: <IconSemiLogo style={{ height: '36px', fontSize: 36 }} />,
         text: `${t('appName')}`

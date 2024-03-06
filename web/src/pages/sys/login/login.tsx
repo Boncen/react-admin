@@ -13,7 +13,7 @@ export default function Login() {
   const { push } = useRouter();
   const { setUserToken } = useUserActions();
   const isDark = useDarkMode();
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
   useEffect(() => {
     changeTheme(isDark);
@@ -24,14 +24,14 @@ export default function Login() {
     if (username === "admin" && password === "admin") {
       setUserToken("1234567890");
       Notification.success({
-        title: t('sys.login.loginSuccessTitle'),
+        title: t("sys.login.loginSuccessTitle"),
         duration: 3,
       });
       push(PageMapper.Home);
     } else {
       Notification.error({
-        title: t('sys.api.errorTip'),
-        content: t('AuthenticationFail'),
+        title: t("sys.api.errorTip"),
+        content: t("AuthenticationFail"),
         duration: 3,
       });
     }
@@ -39,7 +39,7 @@ export default function Login() {
 
   return (
     <div
-      className="w-full h-screen	 justify-center items-center flex "
+      className="w-full h-screen justify-center items-center flex "
       style={{ background: " var( --semi-color-bg-0)" }}
     >
       {/* <div className=""> */}
@@ -47,35 +47,35 @@ export default function Login() {
         className="w-1/5 min-w-64"
         shadows="hover"
         bordered={true}
-        title={t('sys.login.signInPrimaryTitle')}
+        title={t("sys.login.signInPrimaryTitle")}
       >
         <Form onSubmit={handleSubmit}>
           <Form.Input
             field="UserName"
-            label={t('sys.menu.user.account')}
+            label={t("sys.menu.user.account")}
             onChange={(value) => setUsername(value)}
             trigger="blur"
-            rules={[{ required: true, message: t('validation.needAccount') }]}
+            rules={[{ required: true, message: t("validation.needAccount") }]}
           />
           <Form.Input
             field="Password"
             label={{
-              text: t('sys.login.password'),
+              text: t("sys.login.password"),
             }}
             mode="password"
             onChange={(value) => setPassword(value)}
             trigger="blur"
             rules={[
-              { required: true, message: t('validation.needPassword') },
+              { required: true, message: t("validation.needPassword") },
               {
                 validator: (_, value) => value?.length >= 5,
-                message: t('validation.passwordLengthError'),
+                message: t("validation.passwordLengthError"),
               },
             ]}
           />
 
           <Button block htmlType="submit" onSubmit={handleSubmit}>
-            {t('sys.login.signInFormTitle')}
+            {t("sys.login.signInFormTitle")}
           </Button>
         </Form>
       </Card>
