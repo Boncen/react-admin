@@ -21,11 +21,15 @@ export function useMatchRouteMeta() {
   const flattenedRoutes = useFlattenedRoutes();
 
   useEffect(() => {
+    console.log('matchs', matchs, flattenedRoutes);
+    
     // 获取当前匹配的路由
     const lastRoute = matchs.at(-1);
     const currentRouteMeta = flattenedRoutes.find(
       (item) => item.key === lastRoute?.pathname || `${item.key}/` === lastRoute?.pathname,
       );
+      console.log(currentRouteMeta);
+      
     if (currentRouteMeta) {
       if (!currentRouteMeta.hideTab) { 
         currentRouteMeta.outlet = children;

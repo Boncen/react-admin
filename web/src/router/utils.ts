@@ -44,6 +44,8 @@ export function getMenuRoutes(appRouteObjects: AppRouteObject[]) {
  * return flatten routes
  */
 export function flattenMenuRoutes(routes: AppRouteObject[]) {
+  console.log('flattenMenuRoutes', routes);
+  
   return routes.reduce<RouteMeta[]>((prev, item) => {
     const { meta, children } = item;
     if (meta) prev.push(meta);

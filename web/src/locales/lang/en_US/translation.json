@@ -1,5 +1,6 @@
 {
   "AuthenticationFail": "Authentication fail",
+  "appName": "Admin System",
   "common": {
     "back": "Back",
     "cancelText": "Cancel",
@@ -15,14 +16,13 @@
     "redo": "Refresh",
     "resetText": "Reset",
     "saveText": "Save",
-    "searchText": "Search"
-  },
-  "disp": {
+    "searchText": "Search",
     "about": "About",
     "feedback": "Feedback",
     "loading": "Loading",
     "login": "Login",
-    "setting": "Setting"
+    "setting": "Setting",
+    "homePage": "Home"
   },
   "header": {
     "logout": "Logout",

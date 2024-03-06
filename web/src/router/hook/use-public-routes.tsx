@@ -12,6 +12,7 @@ export function usePublicRoutes(){
             icon: '',
             type: PermissionType.CATALOGUE,
             route: 'error',
+            hide: true,
             children: [
               {
                 id: 'error-404',

@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import { BasicStatus, PermissionType } from './enum';
 
 export interface UserToken {
@@ -41,6 +42,12 @@ export interface Permission {
   frameSrc?: string;
   newFeature?: boolean;
   children?: Permission[];
+}
+export interface NavItem {
+  itemKey: string;
+  text: string;
+  icon?: ReactNode;
+  items?: NavItem[];
 }
 
 export interface Role {

@@ -10,8 +10,13 @@ import { usePermissionRoutes } from './use-permission-routes';
 export function useFlattenedRoutes() {
   const flattenRoutes = useCallback(flattenMenuRoutes, []);
   const permissionRoutes = usePermissionRoutes();
+  console.log('permissionRoutes', permissionRoutes);
+  
   return useMemo(() => {
     const menuRoutes = menuFilter(permissionRoutes);
-    return flattenRoutes(menuRoutes);
+    const tmp = flattenRoutes(menuRoutes);
+    console.log(tmp,1);
+    
+    return tmp;
   }, [flattenRoutes, permissionRoutes]);
 }

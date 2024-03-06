@@ -13,7 +13,7 @@ export interface RouteMeta {
   /**
    * menu prefix icon
    */
-  icon?: ReactNode;
+  icon?: string;
   /**
    * menu suffix icon
    */

@@ -67,6 +67,7 @@ export default function MultiTabs() {
     return (
       <Dropdown.Menu>
         <Dropdown.Item
+        key={'refreshTab'}
           onClick={() => {
             refreshTab(rightClickItemkey);
             // 
@@ -77,19 +78,19 @@ export default function MultiTabs() {
           {t("sys.tab.refresh")}
         </Dropdown.Item>
         <Divider />
-        <Dropdown.Item onClick={() => handleCloseTab(rightClickItemkey)}>
+        <Dropdown.Item key={'closeTab'} onClick={() => handleCloseTab(rightClickItemkey)}>
           {t("sys.tab.close")}
         </Dropdown.Item>
-        <Dropdown.Item onClick={() => closeOthers(rightClickItemkey)}>
+        <Dropdown.Item key={'closeOthers'} onClick={() => closeOthers(rightClickItemkey)}>
           {t("sys.tab.closeOthers")}
         </Dropdown.Item>
-        <Dropdown.Item onClick={closeAll}>
+        <Dropdown.Item key={'closeAll'} onClick={closeAll}>
           {t("sys.tab.closeAll")}
         </Dropdown.Item>
-        <Dropdown.Item onClick={() => closeLeft(rightClickItemkey)}>
+        <Dropdown.Item key={'closeLeft'} onClick={() => closeLeft(rightClickItemkey)}>
           {t("sys.tab.closeLeft")}
         </Dropdown.Item>
-        <Dropdown.Item onClick={() => closeRight(rightClickItemkey)}>
+        <Dropdown.Item key={'closeRight'} onClick={() => closeRight(rightClickItemkey)}>
           {t("sys.tab.closeRight")}
         </Dropdown.Item>
       </Dropdown.Menu>
