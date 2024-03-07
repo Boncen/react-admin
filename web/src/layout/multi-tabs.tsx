@@ -31,6 +31,8 @@ export default function MultiTabs() {
   } = useKeepAlive();
 
   useEffect(() => {
+    console.log('tabs', tabs);
+    
     const newList = tabs.map((x) => {
       return { tab: t(x.label), itemKey: x.key };
     });

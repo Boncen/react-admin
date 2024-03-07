@@ -76,6 +76,18 @@ export default function useKeepAlive() {
     }
   };
 
+  /**
+   * 关闭当前tab
+   */
+  const closeThis = ()=> {
+    const tab = tabs.find((x) => x.key === currentRouteMeta?.key);
+    console.log(currentRouteMeta, tab);
+    
+    if (tab) {
+      closeTab(tab.key);
+    }
+  }
+
   useEffect(() => {
     if (!currentRouteMeta) {
       return;
@@ -92,7 +104,7 @@ export default function useKeepAlive() {
       ]);
     }
     setActiveTabRoutePath(currentRouteMeta.key);
-  }, [currentRouteMeta]);
+  }, [currentRouteMeta, tabs]);
 
   return {
     tabs,
@@ -103,6 +115,7 @@ export default function useKeepAlive() {
     closeRight,
     refreshTab,
     closeAll,
+    closeThis
   };
 }
 function getKey() {

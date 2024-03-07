@@ -1,4 +1,37 @@
+import {
+  IllustrationFailure,
+  IllustrationFailureDark,
+} from "@douyinfe/semi-illustrations";
+import { Empty } from "@douyinfe/semi-ui";
+import { useTranslation } from "react-i18next";
+
 export default function Page() {
-    return <div>500</div>;
-  }
-  
+  const {t} = useTranslation();
+  const emptyStyle = {
+    padding: 30,
+  };
+  // const { push } = useRouter();
+  // const { closeThis } = useKeepAlive();
+  return (
+    <div>
+      <Empty
+        image={<IllustrationFailure style={{ width: 150, height: 150 }} />}
+        darkModeImage={
+          <IllustrationFailureDark style={{ width: 150, height: 150 }} />
+        }
+        description=<div className="flex flex-col">
+          <span>{t('sys.api.errMsg500')}</span>
+          {/* <Button
+            onClick={() => {
+              closeThis();
+              //push(PageMapper.Home);
+            }}
+          >
+            返回首页
+          </Button> */}
+        </div>
+        style={emptyStyle}
+      />
+    </div>
+  );
+}

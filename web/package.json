@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@douyinfe/semi-icons": "^2.53.2",
+    "@douyinfe/semi-illustrations": "^2.53.3",
     "@douyinfe/semi-ui": "^2.53.2",
     "@types/mockjs": "^1.0.10",
     "@types/ramda": "^0.29.10",
