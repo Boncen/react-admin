@@ -12,7 +12,7 @@ export default function App() {
   const settingStore = useSettingsStore();
   return (
     <LocaleProvider
-      locale={settingStore.settings.lang === LocalEnum.zh_CN ? zh_CN : en_US}
+      locale={settingStore.settings.lang === LocalEnum['zh-CN'] ? zh_CN : en_US}
     >
       <Suspense fallback={<CircleLoading />}>
         <Router />

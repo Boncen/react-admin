@@ -9,10 +9,10 @@ i18n
   .use(initReactI18next)
   .init({
     resources: {
-      en_US: { translation: en },
-      zh_CN: { translation: zh },
+      'en-US': { translation: en },
+      'zh-CN': { translation: zh },
     },
-    fallbackLng: "en_US",
+    fallbackLng: "en-US",
     debug: false,
     react: {
       useSuspense: true,

@@ -22,8 +22,6 @@ function resolveComponent(path: string) {
  */
 export function usePermissionRoutes() {
   const permissions = useUserPermission();
-  console.log(22, permissions);
-  
   // add public routes
   const publicRoutes = usePublicRoutes();
   for (let index = 0; index < publicRoutes.length; index++) {
@@ -35,12 +33,10 @@ export function usePermissionRoutes() {
   
   return useMemo(() => {
     const flattenedPermissions = flattenTrees(permissions!);
-    console.log(23, flattenedPermissions);
     const permissionRoutes = transformPermissionToMenuRoutes(
       permissions || [],
       flattenedPermissions
     );
-    console.log(234, permissionRoutes);
     return [...permissionRoutes];
   }, [permissions]);
 }

@@ -14,7 +14,7 @@ export enum BasicStatus {
     User = 'user',
     Token = 'token',
     Settings = 'settings',
-    I18N = 'i18nextLng',
+    I18N = 'i18nextLng'
   }
   
   export enum ThemeMode {
@@ -38,8 +38,8 @@ export enum BasicStatus {
   }
   
   export enum LocalEnum {
-    en_US = 'en_US',
-    zh_CN = 'zh_CN',
+    'en-US' = 'en-US',
+    'zh-CN' = 'zh-CN',
   }
   
   export enum MultiTabOperation {

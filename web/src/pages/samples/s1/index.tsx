@@ -1,11 +1,14 @@
 import { Button, Form, Tooltip } from "@douyinfe/semi-ui";
 import { IconHelpCircle } from "@douyinfe/semi-icons";
 import api from "@/api";
+import { getStringItem } from "@/utils/storage";
+import { StorageEnum } from "#/enum";
 
 export default function Index() {
   const { Option } = Form.Select;
 
   const handleClickTest = () => {
+    console.log('I18N',StorageEnum.I18N, getStringItem(StorageEnum.I18N));
     api.login({ username: "1" }).then((x) => console.log(x));
   };
   return (

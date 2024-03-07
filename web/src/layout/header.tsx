@@ -32,6 +32,8 @@ export default function Header() {
   const { t, i18n } = useTranslation();
   const isDark = useDarkMode();
   const lang = useLanguage();
+  console.log('lang', lang);
+  
   const updateLang = useUpdateLang();
   const { push } = useRouter();
   const { clearUserInfoAndToken } = useUserActions();
@@ -79,16 +81,16 @@ export default function Header() {
               render={
                 <Dropdown.Menu>
                   <Dropdown.Item
-                    onClick={() => handleChangeLanguage(LocalEnum.zh_CN)}
-                    className={lang === LocalEnum.zh_CN? 'text-blue-500	' : '	'}
+                    onClick={() => handleChangeLanguage(LocalEnum['zh-CN'])}
+                    className={lang === LocalEnum['zh-CN']? 'text-blue-500	' : '	'}
                   >
                     简体中文
                   </Dropdown.Item>
                   <Dropdown.Item
                     onClick={() => {
-                      handleChangeLanguage(LocalEnum.en_US);
+                      handleChangeLanguage(LocalEnum['en-US']);
                     }}
-                    className={lang === LocalEnum.en_US? 'text-blue-500	' : ''}
+                    className={lang === LocalEnum['en-US']? 'text-blue-500	' : ''}
                   >
                     English
                   </Dropdown.Item>

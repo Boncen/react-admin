@@ -3,7 +3,7 @@ import { Form, Button, Card, Notification } from "@douyinfe/semi-ui";
 import { useRouter } from "@/router/hook";
 import PageMapper from "@/utils/page-mapper";
 import { useUserActions } from "@/store/userStore";
-import { useDarkMode } from "@/store/settingsStore";
+import { useDarkMode, useLanguage } from "@/store/settingsStore";
 import { changeTheme } from "@/router/utils";
 import { useTranslation } from "react-i18next";
 
@@ -13,11 +13,13 @@ export default function Login() {
   const { push } = useRouter();
   const { setUserToken } = useUserActions();
   const isDark = useDarkMode();
-  const { t } = useTranslation();
+  const lang = useLanguage();
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     changeTheme(isDark);
-  });
+    i18n.changeLanguage(lang ?? "");
+  }, []);
 
   const handleSubmit = () => {
     console.log(username, password);
