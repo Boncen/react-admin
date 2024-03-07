@@ -9,22 +9,7 @@ import { useTranslation } from "react-i18next";
 import { NavItem } from "#/entity";
 import { AppRouteObject } from "#/router";
 
-function permission2Menu(permissions: AppRouteObject[], parentItem?: AppRouteObject):NavItem[] {
-  const navItems: NavItem[] = [];
-  for (let index = 0; index < permissions.length; index++) {
-    const p = permissions[index];
-    if (!p.meta?.label || p.meta.hideMenu) {
-      continue;
-    }
-    navItems.push( {
-      itemKey: parentItem ? `/${parentItem.path}/${p.path}` : `${p.path}`,
-      text: p.meta?.label,
-      icon: <Icon icon={p.meta?.icon ?? ''} width={22} height={22}/>,
-      items: permission2Menu(p.children ?? [], p)
-    } as NavItem)
-  }
-  return navItems;
-}
+
 
 export default function SidebarMenus() {
   const { Sider } = Layout;
@@ -35,6 +20,23 @@ export default function SidebarMenus() {
   const permissions = usePermissionRoutes();
   const navItems = permission2Menu(permissions);
   
+  function permission2Menu(permissions: AppRouteObject[], parentItem?: AppRouteObject):NavItem[] {
+    const navItems: NavItem[] = [];
+    for (let index = 0; index < permissions.length; index++) {
+      const p = permissions[index];
+      if (!p.meta?.label || p.meta.hideMenu) {
+        continue;
+      }
+      navItems.push( {
+        itemKey: parentItem ? `/${parentItem.path}/${p.path}` : `${p.path}`,
+        text: t(p.meta?.label),
+        icon: <Icon icon={p.meta?.icon ?? ''} width={22} height={22}/>,
+        items: permission2Menu(p.children ?? [], p)
+      } as NavItem)
+    }
+    return navItems;
+  }
+
   useEffect(() => {
     setSelectedKeys([activeTabRoutePath ?? ""]);
   }, [activeTabRoutePath]);

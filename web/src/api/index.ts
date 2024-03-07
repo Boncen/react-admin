@@ -1,4 +1,4 @@
-import * as userService from './userService'
+import * as userService from './service/userService'
 
 export default {
     ...userService

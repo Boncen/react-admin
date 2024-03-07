@@ -4,9 +4,13 @@ import {
 } from "@douyinfe/semi-illustrations";
 import { Empty } from "@douyinfe/semi-ui";
 import { useTranslation } from "react-i18next";
+import { useRouteError } from "react-router-dom";
 
 export default function Page() {
   const {t} = useTranslation();
+  const error = useRouteError();
+  console.error('error', error);
+  
   const emptyStyle = {
     padding: 30,
   };

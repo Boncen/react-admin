@@ -58,3 +58,8 @@ export enum BasicStatus {
     BUTTON,
   }
   
+  export enum UserStateEnum {
+    NORMAL,
+    FROZEN,
+    DELETED
+  }

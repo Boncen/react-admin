@@ -5,6 +5,7 @@ import {
   Dropdown,
   Space,
   SideSheet,
+  Divider,
 } from "@douyinfe/semi-ui";
 import {
   IconSun,
@@ -22,7 +23,7 @@ import {
 } from "@/store/settingsStore";
 import PageMapper from "@/utils/page-mapper";
 import { useRouter } from "@/router/hook";
-import { useUserActions } from "@/store/userStore";
+import { useUserActions, useUserInfo } from "@/store/userStore";
 import { changeTheme } from "@/router/utils";
 import { useTranslation } from "react-i18next";
 import Setting from "./setting";
@@ -32,8 +33,8 @@ export default function Header() {
   const { t, i18n } = useTranslation();
   const isDark = useDarkMode();
   const lang = useLanguage();
-  console.log('lang', lang);
-  
+  const userInfo = useUserInfo();
+
   const updateLang = useUpdateLang();
   const { push } = useRouter();
   const { clearUserInfoAndToken } = useUserActions();
@@ -81,16 +82,20 @@ export default function Header() {
               render={
                 <Dropdown.Menu>
                   <Dropdown.Item
-                    onClick={() => handleChangeLanguage(LocalEnum['zh-CN'])}
-                    className={lang === LocalEnum['zh-CN']? 'text-blue-500	' : '	'}
+                    onClick={() => handleChangeLanguage(LocalEnum["zh-CN"])}
+                    className={
+                      lang === LocalEnum["zh-CN"] ? "text-blue-500	" : "	"
+                    }
                   >
                     简体中文
                   </Dropdown.Item>
                   <Dropdown.Item
                     onClick={() => {
-                      handleChangeLanguage(LocalEnum['en-US']);
+                      handleChangeLanguage(LocalEnum["en-US"]);
                     }}
-                    className={lang === LocalEnum['en-US']? 'text-blue-500	' : ''}
+                    className={
+                      lang === LocalEnum["en-US"] ? "text-blue-500	" : ""
+                    }
                   >
                     English
                   </Dropdown.Item>
@@ -143,6 +148,13 @@ export default function Header() {
               position={"bottomRight"}
               render={
                 <Dropdown.Menu>
+                  <Dropdown.Item>
+                    <div className="flex flex-col">
+                      <span className="font-bold">{userInfo?.username}</span>
+                      <span className="text-gray">{userInfo?.email}</span>
+                    </div>
+                  </Dropdown.Item>
+                  <Divider />
                   <Dropdown.Item onClick={() => push(PageMapper.MyInfo)}>
                     {t("header.myinfo")}
                   </Dropdown.Item>
@@ -152,13 +164,13 @@ export default function Header() {
                 </Dropdown.Menu>
               }
             >
-              <Avatar color="pink" size="small">
+              <Avatar color="pink" size="small" src={userInfo?.avatar}>
                 HBC
               </Avatar>
             </Dropdown>
           </Space>
           <SideSheet
-            title={t('common.setting')}
+            title={t("common.setting")}
             visible={showSideSheet}
             onCancel={() => setShowSideSheet(false)}
           >

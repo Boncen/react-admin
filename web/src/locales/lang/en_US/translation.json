@@ -26,7 +26,7 @@
   },
   "header": {
     "logout": "Logout",
-    "myinfo": "Personal Page",
+    "myinfo": "My profile",
     "subtitle": "Subtitle",
     "title": "Title"
   },
@@ -133,7 +133,9 @@
         "index": "User",
         "profile": "Profile"
       },
-      "workbench": "Workbench"
+      "workbench": "Workbench",
+      "userManager": "Users",
+      "roleManager": "Roles"
     },
     "other": {
       "apperance": "Apperance"

@@ -132,7 +132,9 @@
         "index": "用户",
         "profile": "个人资料"
       },
-      "workbench": "工作台"
+      "workbench": "工作台",
+      "userManager": "用户管理",
+      "roleManager": "角色管理"
     },
     "tab": {
       "close": "关闭标签页",

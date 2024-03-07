@@ -3,6 +3,7 @@ import { AppRouteObject } from "#/router";
 import DashboardLayout from "@/layout/dashboard";
 import Dashboard from "@/pages/dashboard";
 import AuthGuard from "@/components/guard/authGuard";
+import Page from "@/pages/error/page500";
 const menuModuleRoutes = getMenuModules();
 
 /**
@@ -12,9 +13,10 @@ const menuModuleRoutes = getMenuModules();
 export const MenuRoutes: AppRouteObject = {
   path: "/",
   element: (
-      <AuthGuard>
-        <DashboardLayout />
-      </AuthGuard>
+    <AuthGuard>
+      <DashboardLayout />
+    </AuthGuard>
   ),
+  errorElement: <Page />,
   children: [{ index: true, element: <Dashboard /> }, ...menuModuleRoutes],
 };

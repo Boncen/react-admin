@@ -18,5 +18,5 @@ export function useFlattenedRoutes() {
     console.log(tmp,1);
     
     return tmp;
-  }, [flattenRoutes, permissionRoutes]);
+  }, [permissionRoutes]);
 }

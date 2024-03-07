@@ -21,16 +21,16 @@ function resolveComponent(path: string) {
  * return routes about permission
  */
 export function usePermissionRoutes() {
-  const permissions = useUserPermission();
+  const permissions: Permission[] = useUserPermission();
   // add public routes
   const publicRoutes = usePublicRoutes();
   for (let index = 0; index < publicRoutes.length; index++) {
     const element = publicRoutes[index];
-    if (!permissions.find(x=>x.id === element.id)) {
+    if (permissions?.find((x) => x.id === element.id)) {
       permissions.push(element);
     }
   }
-  
+
   return useMemo(() => {
     const flattenedPermissions = flattenTrees(permissions!);
     const permissionRoutes = transformPermissionToMenuRoutes(
@@ -119,7 +119,6 @@ function getCompleteRoute(
   flattenedPermissions: Permission[],
   route = ""
 ) {
-  
   const currentRoute = route
     ? `/${permission.route}${route}`
     : `/${permission.route}`;
@@ -133,6 +132,6 @@ function getCompleteRoute(
       currentRoute
     );
   }
-  
-  return currentRoute.replace(`//`, '/');
+
+  return currentRoute.replace(`//`, "/");
 }

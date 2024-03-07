@@ -6,12 +6,13 @@ import { useUserActions } from "@/store/userStore";
 import { useDarkMode, useLanguage } from "@/store/settingsStore";
 import { changeTheme } from "@/router/utils";
 import { useTranslation } from "react-i18next";
+import api from "@/api";
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const { push } = useRouter();
-  const { setUserToken } = useUserActions();
+  const { setUserToken, setUserInfo } = useUserActions();
   const isDark = useDarkMode();
   const lang = useLanguage();
   const { t, i18n } = useTranslation();
@@ -22,21 +23,25 @@ export default function Login() {
   }, []);
 
   const handleSubmit = () => {
-    console.log(username, password);
-    if (username === "admin" && password === "admin") {
-      setUserToken("1234567890");
-      Notification.success({
-        title: t("sys.login.loginSuccessTitle"),
-        duration: 3,
+    api.getUserInfo().then((x) => {
+      console.log("userinfo", x);
+      setUserInfo(x);
+    });
+    api
+      .login({
+        account: username,
+        password: password,
+      })
+      .then((x: { token: string }) => {
+        console.log(x);
+        setUserToken(x.token);
+        Notification.success({
+          title: t("sys.login.loginSuccessTitle"),
+          duration: 3,
+        });
+        
+        push(PageMapper.Home);
       });
-      push(PageMapper.Home);
-    } else {
-      Notification.error({
-        title: t("sys.api.errorTip"),
-        content: t("AuthenticationFail"),
-        duration: 3,
-      });
-    }
   };
 
   return (

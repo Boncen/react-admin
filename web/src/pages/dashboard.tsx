@@ -1,6 +1,7 @@
 import { VChart } from "@visactor/react-vchart";
 import { Card, Col, List, Progress, Row } from "@douyinfe/semi-ui";
 import { IconChevronDown, IconChevronUp, IconHistogram, IconPlusCircle } from "@douyinfe/semi-icons";
+import { useUserInfo } from "@/store/userStore";
 
 const chart = {
   spec: {
@@ -329,18 +330,20 @@ const strokeArr = [
     { percent: 80, color: 'hsla(125, 50%, 46% / 1)' }
 ];
 export default function Dashboard() {
+  const userInfo = useUserInfo();
   return (
     <div className="grid">
       <Row>
         <Col span={18}>
           <Card
-            className="h-60 m-1 bg-gradient-to-r from-cyan-500 to-blue-500"
+            className="h-60 m-1 bg-gradient-to-r from-cyan-600 to-blue-700"
             shadows={"hover"}
           >
-            <div>
-              <span className="font-bold text-xl text-white">
+            <div className="flex flex-col font-bold text-xl text-white">
+              <span >
                 Welcome Back!👋
               </span>
+              <span>{userInfo?.username}</span>
             </div>
           </Card>
         </Col>

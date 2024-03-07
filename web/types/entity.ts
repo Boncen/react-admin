@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { BasicStatus, PermissionType } from './enum';
+import { BasicStatus, PermissionType, UserStateEnum } from './enum';
 
 export interface UserToken {
   accessToken?: string;
@@ -12,8 +12,9 @@ export interface UserInfo {
   username: string;
   password?: string;
   avatar?: string;
-  role?: Role;
-  status?: BasicStatus;
+  // role?: Role;
+  role?: string[];
+  // status?: BasicStatus;
   permissions?: Permission[];
   token?: string;
 }
@@ -58,4 +59,14 @@ export interface Role {
   order?: number;
   desc?: string;
   permission?: Permission[];
+}
+
+export interface SystemUser {
+  id: string;
+  name:string;
+  email: string;
+  mobile: string;
+  age?: number;
+  state: UserStateEnum;
+  remark?: string;
 }
