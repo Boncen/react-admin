@@ -2,7 +2,6 @@ import { Result } from "#/api";
 import { Permission, SystemUser, UserInfo } from "#/entity";
 import { PermissionType, ResultEnum, UserStateEnum } from "#/enum";
 import Mock from 'mockjs'
-var Random = Mock.Random;
 const permissionList: Permission[] = [
   {
     id: "1",
@@ -111,6 +110,7 @@ const userInfo: Result<UserInfo> = {
 const userList: Result<SystemUser> = {
   status: ResultEnum.SUCCESS,
   message: "ok",
+  // @ts-expect-error using mock
   'data|15-40': [{
     'id|+1': 1,
     name: Mock.mock('@cname()'),
