@@ -1,6 +1,6 @@
 import Mock from "mockjs";
 import data from "./data/list";
-import {loginResult, userInfo, userList} from './data/user'
+import {loginResult, userInfo, userList, roleList} from './data/user'
 import {successResult} from './data/common'
 
 export default function setupMock() {
@@ -15,4 +15,5 @@ export default function setupMock() {
   Mock.mock("/api/userinfo", "put", successResult);
   
   Mock.mock("/api/users", "get", userList);
+  Mock.mock("/api/roles", "get", roleList);
 }

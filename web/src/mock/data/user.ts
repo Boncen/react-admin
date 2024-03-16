@@ -1,7 +1,6 @@
 import { Result } from "#/api";
-import { Permission, SystemUser, UserInfo } from "#/entity";
+import { Permission, Role, SystemUser, UserInfo } from "#/entity";
 import { PermissionType, ResultEnum, UserStateEnum } from "#/enum";
-import Mock from 'mockjs'
 const permissionList: Permission[] = [
   {
     id: "1",
@@ -111,14 +110,41 @@ const userList: Result<SystemUser> = {
   status: ResultEnum.SUCCESS,
   message: "ok",
   // @ts-expect-error using mock
-  'data|15-40': [{
-    'id|+1': 1,
-    name: Mock.mock('@cname()'),
-    email: Mock.mock('@EMAIL()'),
-    mobile: Mock.mock(/^1[3456789]\d{9}$/),
-    state: UserStateEnum.NORMAL,
-    remark: Mock.mock('@sentence()')
-}],
+  "data|15-40": [
+    {
+      "id|+1": 1,
+      "key|+1": 1,
+      name: "@cname",
+      email: "@email",
+      mobile: /1[35789]\d{9}/,
+      state: UserStateEnum.NORMAL,
+      remark: "@sentence",
+    },
+  ],
 };
 
-export { userInfo, loginResult, userList };
+const roleList: Result<Role> = {
+  status: ResultEnum.SUCCESS,
+  message: "ok",
+  // @ts-expect-error using mock
+  data: [
+    {
+      id: 1,
+      key: 1,
+      name: "管理员",
+      label: "管理员",
+      desc: "管理员",
+      permission: [],
+    },
+    {
+      id: 2,
+      key: 2,
+      name: "财务总监",
+      label: "财务总监",
+      desc: "财务总监",
+      permission: [],
+    },
+  ],
+};
+
+export { userInfo, loginResult, userList, roleList };
