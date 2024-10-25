@@ -1,0 +1,39 @@
+{
+  "name": "react-admin",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "rsbuild build",
+    "check": "biome check --write",
+    "dev": "rsbuild dev",
+    "format": "biome format --write",
+    "lint": "eslint .",
+    "preview": "rsbuild preview"
+  },
+  "dependencies": {
+    "@douyinfe/semi-icons": "^2.68.3",
+    "@douyinfe/semi-ui": "^2.68.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.27.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.3",
+    "@eslint/compat": "^1.2.0",
+    "@eslint/js": "^9.12.0",
+    "@rsbuild/core": "^1.0.16",
+    "@rsbuild/plugin-react": "^1.0.5",
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.1",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^9.12.0",
+    "eslint-plugin-react": "^7.37.1",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "globals": "^15.11.0",
+    "postcss": "^8.4.47",
+    "postcss-loader": "^8.1.1",
+    "tailwindcss": "^3.4.14",
+    "typescript": "^5.6.3",
+    "typescript-eslint": "^8.8.1"
+  }
+}
