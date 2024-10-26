@@ -1,24 +1,23 @@
-import { IconBell, IconHelpCircle } from "@douyinfe/semi-icons";
+import { IconHelpCircle } from "@douyinfe/semi-icons";
 import { Avatar, Button, Nav } from "@douyinfe/semi-ui";
 import { Breadcrumbs } from "./breadcrumb";
+import { Notification } from "./notification";
+import { LanguageSwitcher } from "./languageSwitcher";
 
 export function Header() {
 
     return (
-        <div>
+        <div >
             <Nav
+            className="h-[40px]"
                 mode="horizontal"
+                header={
+                    <Breadcrumbs ></Breadcrumbs>
+                }
                 footer={
                     <>
-                    <Breadcrumbs ></Breadcrumbs>
-                        <Button
-                            theme="borderless"
-                            icon={<IconBell size="large" />}
-                            style={{
-                                color: 'var(--semi-color-text-2)',
-                                marginRight: '12px',
-                            }}
-                        />
+                        <Notification />
+                        <LanguageSwitcher />
                         <Button
                             theme="borderless"
                             icon={<IconHelpCircle size="large" />}
@@ -28,7 +27,7 @@ export function Header() {
                             }}
                         />
                         <Avatar color="orange" size="small">
-                            YJ
+                            Bc
                         </Avatar>
                     </>
                 }

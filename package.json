@@ -13,9 +13,16 @@
   "dependencies": {
     "@douyinfe/semi-icons": "^2.68.3",
     "@douyinfe/semi-ui": "^2.68.3",
+    "axios": "^1.7.7",
+    "i18next": "^23.16.4",
+    "i18next-browser-languagedetector": "^8.0.0",
+    "immer": "^10.1.1",
+    "mockjs": "^1.1.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.27.0"
+    "react-i18next": "^15.1.0",
+    "react-router-dom": "^6.27.0",
+    "zustand": "^5.0.0"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.3",

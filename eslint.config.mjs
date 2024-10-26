@@ -24,6 +24,7 @@ export default [
       'react-hooks': reactHooks,
     },
     rules: {
+      "@typescript-eslint/no-explicit-any": ["off"],
       ...reactHooks.configs.recommended.rules,
     },
   },

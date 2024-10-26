@@ -1,8 +1,10 @@
 import { Layout } from "@douyinfe/semi-ui";
-import { Outlet } from "react-router-dom";
+// import { Outlet } from "react-router-dom";
 import { Footer as FooterLayout } from "./footer";
 import { Header as HeaderLayout } from "./header";
 import { SiderLayout } from "./sider";
+import { MultiTabs } from "./multi-tabs";
+// import { MultiTabs } from "./multitabs_bak";
 
 
 export function AdminLayout() {
@@ -13,29 +15,22 @@ export function AdminLayout() {
                 <SiderLayout></SiderLayout>
             </Sider>
             <Layout>
-                <Header style={{ backgroundColor: 'var(--semi-color-bg-1)' }}>
+                <Header>
                     <HeaderLayout></HeaderLayout>
                 </Header>
                 <Content
                     style={{
-                        padding: '10px',
                         backgroundColor: 'var(--semi-color-bg-0)',
                     }}
                 >
                     <div
-                        style={{
-                            borderRadius: '10px',
-                            border: '1px solid var(--semi-color-border)',
-                            height: '376px',
-                            padding: '12px',
-                        }}
+                        className="h-full shadow-md p-1"
                     >
-                        <Outlet />
+                        {/* <Outlet /> */}
+                        <MultiTabs />
                     </div>
                 </Content>
-                <Footer
-                   
-                >
+                <Footer>
                     <FooterLayout></FooterLayout>
                 </Footer>
             </Layout>
