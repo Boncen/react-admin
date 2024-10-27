@@ -5,7 +5,7 @@ import api from "@/api";
 import { useNavigate } from "react-router-dom";
 import useSettingStore from "@/store/useSettingStore";
 import { useUserActions } from "@/store/userStore";
-import "./index.css";
+import style from "./index.module.css";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -43,7 +43,7 @@ export default function Login() {
   };
 
   return (
-    <div className="w-full h-screen justify-center items-center flex doubleAngled">
+    <div className={style.bg}>
       <Card
         className="w-1/5 min-w-64"
         shadows="hover"

@@ -1,4 +1,3 @@
-import { Button } from "@douyinfe/semi-ui";
 import { Link } from "react-router-dom"
 
 export function Page404() {
