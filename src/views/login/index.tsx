@@ -35,7 +35,7 @@ export default function Login() {
         
         userStore.actions.setUserToken(x.token);
         Notification.success({
-          title: t("sys.login.loginSuccessTitle"),
+          title: t("tip.loginSuccessTitle"),
           duration: 3,
         });
 
@@ -54,35 +54,35 @@ export default function Login() {
         className="w-1/4"
         shadows={"always"}
         bordered={true}
-        title={t("sys.login.signInPrimaryTitle")}
+        title={t("ui.loginFormTitle")}
       >
         <Form onSubmit={handleSubmit}>
           <Form.Input
             field="UserName"
-            label={t("sys.menu.user.account")}
+            label={t("ui.account")}
             onChange={(value) => setUsername(value)}
             trigger="blur"
-            rules={[{ required: true, message: t("validation.needAccount") }]}
+            rules={[{ required: true, message: t("ui.validateAccountFail") }]}
           />
           <Form.Input
             field="Password"
             label={{
-              text: t("sys.login.password"),
+              text: t("ui.password"),
             }}
             mode="password"
             onChange={(value) => setPassword(value)}
             trigger="blur"
             rules={[
-              { required: true, message: t("validation.needPassword") },
+              { required: true, message: t("ui.validatePasswordFail") },
               {
                 validator: (_, value) => value?.length >= 5,
-                message: t("validation.passwordLengthError"),
+                message: t("tip.validatePasswordLengthFail"),
               },
             ]}
           />
 
           <Button block htmlType="submit" onSubmit={handleSubmit}>
-            {t("sys.login.signInFormTitle")}
+            {t("ui.login")}
           </Button>
         </Form>
       </Card>

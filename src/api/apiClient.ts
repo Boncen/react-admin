@@ -31,8 +31,8 @@ axiosInstance.interceptors.request.use(
 // 响应拦截
 axiosInstance.interceptors.response.use(
   (res: AxiosResponse<Result>) => {
-    // if (!res.data) throw new Error(t('sys.api.apiRequestFailed'));
-    if (!res.data) throw new Error(t("sys.api.apiRequestFailed"));
+    // if (!res.data) throw new Error(t('tip.requestFail'));
+    if (!res.data) throw new Error(t("tip.requestFail"));
     const { code, data, message } = res.data;
 
     // 业务请求成功
@@ -43,8 +43,8 @@ axiosInstance.interceptors.response.use(
     }
     // 业务请求错误
     Notification.error({
-      title: t("sys.api.errorTip"),
-      content: message || t("sys.api.apiRequestFailed"),
+      title: t("tip.unknownError"),
+      content: message || t("tip.requestFail"),
       duration: 3,
     });
   },
@@ -60,10 +60,10 @@ axiosInstance.interceptors.response.use(
     if (!errMsg) {
       // checkStatus
       // errMsg = checkStatus(response.data.status);
-      errMsg = t("sys.api.errorMessage");
+      errMsg = t("tip.unknownError");
     }
     Notification.error({
-      title: t("sys.api.errorTip"),
+      title: t("tip.unknownError"),
       content: errMsg,
       duration: 3,
     });

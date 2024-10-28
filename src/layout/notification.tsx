@@ -66,7 +66,7 @@ function NotificationPopup() {
       <h2 className="text-[20px] p-2 font-bold">消息</h2>
       <Space>
         <Button size="small">全部已读</Button>
-        <Popconfirm position={"bottomRight"} title={t("ifClearAllItem")} onConfirm={onConfirm}>
+        <Popconfirm position={"bottomRight"} title={t("tip.ifClearAllItem")} onConfirm={onConfirm}>
           <Button size="small" type="danger">
             清空
           </Button>

@@ -18,7 +18,7 @@ export function HeaderSetting() {
         }}
         onClick={() => setIsOpen(!isOpen)}
       />
-      <SideSheet title={t('common.setting')} visible={isOpen} onCancel={() => setIsOpen(!isOpen)}>
+      <SideSheet title={t('ui.setting')} visible={isOpen} onCancel={() => setIsOpen(!isOpen)}>
         <SettingSideSheet />
       </SideSheet>
     </>

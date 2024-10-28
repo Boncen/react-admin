@@ -1,7 +1,0 @@
-{
-    "validation":{
-        "needPassword":"Please input your password",
-        "passwordLengthError": "The password is not long enough",
-        "needAccount": "Please input your account"
-    }
-}
