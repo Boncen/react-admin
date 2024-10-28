@@ -1,6 +1,7 @@
 {
     "AuthenticationFail": "用户名或密码错误",
-    "appName": "Admin 后台",
+    "appName": "React Admin",
+    "ifClearAllItem": "确定清除所有项吗?",
     "common": {
       "back": "返回",
       "cancelText": "取消",

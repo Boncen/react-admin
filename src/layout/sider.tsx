@@ -4,6 +4,7 @@ import Logo from "@/assets/logo.png";
 import { OnSelectedData } from "@douyinfe/semi-ui/lib/es/navigation";
 import { useNavigate } from "react-router-dom";
 import useMenuStore from "@/store/useMenuStore";
+import './sider.less'
 
 export function SiderLayout() {
   const navigate = useNavigate();

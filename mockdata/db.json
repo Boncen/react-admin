@@ -1,0 +1,12 @@
+{
+  "userinfo": {
+    "code": 0,
+    "message": "ok",
+    "data": {
+      "account": "admin",
+      "username": "admin123",
+      "role": "admin",
+      "id": 1001
+    }
+  }
+}

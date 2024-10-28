@@ -1,6 +1,7 @@
 {
     "AuthenticationFail": "Authentication fail",
-    "appName": "Admin System",
+    "appName": "React Admin",
+    "ifClearAllItem": "Are you sure to clear all item?",
     "common": {
       "back": "Back",
       "cancelText": "Cancel",

@@ -1,4 +1,4 @@
-import "./App.css";
+import "./App.less";
 import { RouterProvider } from "react-router-dom";
 import { router } from "./routes";
 import "@/locales";
@@ -12,8 +12,6 @@ import { CircleLoading } from "./components/loading/circleSpin";
 
 const App = () => {
   const settingStore = useSettingStore((state) => state.setting);
-  console.log(settingStore.lang,111);
-
   return (
     <LocaleProvider
       locale={settingStore.lang === LocalEnum["zh-CN"] ? zh_CN : en_US}

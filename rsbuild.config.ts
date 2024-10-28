@@ -1,14 +1,15 @@
-import { defineConfig, loadEnv } from '@rsbuild/core';
-import { pluginReact } from '@rsbuild/plugin-react';
+import { defineConfig, loadEnv } from "@rsbuild/core";
+import { pluginReact } from "@rsbuild/plugin-react";
+import { pluginLess } from "@rsbuild/plugin-less";
 
-const { publicVars } = loadEnv({ prefixes: ['PUBLIC_'] });
+const { publicVars } = loadEnv({ prefixes: ["PUBLIC_"] });
 export default defineConfig({
-  plugins: [pluginReact()],
+  plugins: [pluginReact(), pluginLess()],
   source: {
     define: publicVars,
   },
   html: {
-    title: 'React Admin',
-    favicon: './static/favicon-32x32.png'
-  }
+    title: "React Admin",
+    favicon: "./static/favicon-32x32.png",
+  },
 });
