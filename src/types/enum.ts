@@ -21,12 +21,6 @@ export enum ThemeMode {
   Dark = "dark",
 }
 
-// export enum ThemeLayout {
-//   Vertical = "vertical",
-//   Horizontal = "horizontal",
-//   Mini = "mini",
-// }
-
 export enum ThemeColorPresets {
   Default = "default",
   Cyan = "cyan",
@@ -61,4 +55,10 @@ export enum UserStateEnum {
   NORMAL,
   FROZEN,
   DELETED,
+}
+
+export enum MenuType {
+  PAGE = 1,
+  BUTTON = 2,
+  CATEGORY = 3
 }

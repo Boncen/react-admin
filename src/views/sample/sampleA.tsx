@@ -2,6 +2,9 @@
 export function SampleA(){
 
     return (
-        <div>AAAA</div>
+        <div>AAAA
+
+            <input type="text" />
+        </div>
     )
 }

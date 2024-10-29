@@ -20,4 +20,6 @@ const updateUserInfo = (data: any) => client.put({ url: "/userinfo", data });
 const getUserList = (data: any) => client.get({ url: "/users", data });
 const getRoleList = (data: any) => client.get({ url: "/roles", data });
 
-export { login, logout, getUserInfo, updateUserInfo, getUserList, getRoleList };
+const getMenus = () => client.get({url: "/menus"})
+
+export { login, logout, getUserInfo, updateUserInfo, getUserList, getRoleList, getMenus };

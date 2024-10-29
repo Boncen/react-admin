@@ -1,0 +1,12 @@
+{
+  "menu": {
+    "users": "Users",
+    "menus": "Menus",
+    "roles": "Roles",
+    "logs": "Logs",
+    "system": "SystemManager",
+    "home": "Home",
+    "userDetail": "UserDetail",
+    "page404": "UnknownPage"
+  }
+}

@@ -1,5 +1,5 @@
-import * as userService from './service/userService'
+import * as baseService from './service/baseService'
 
 export default {
-    ...userService
+    ...baseService
 }

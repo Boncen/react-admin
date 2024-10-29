@@ -2,6 +2,6 @@
 export function SampleB(){
 
     return (
-        <div>BBBB</div>
+        <div>BBBB <input type="text" /></div>
     )
 }

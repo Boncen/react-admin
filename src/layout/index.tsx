@@ -4,11 +4,15 @@ import { Footer as FooterLayout } from "./footer";
 import { Header as HeaderLayout } from "./header";
 import { SiderLayout } from "./sider";
 import { MultiTabs } from "./multi-tabs";
+import { useMatches, useOutlet } from "react-router-dom";
 // import { MultiTabs } from "./multitabs_bak";
 
 
 export function AdminLayout() {
+
     const { Header, Footer, Sider, Content } = Layout;
+
+
     return (
         <Layout style={{ border: '1px solid var(--semi-color-border)' }} className="h-screen">
             <Sider style={{ backgroundColor: 'var(--semi-color-bg-1)' }}>

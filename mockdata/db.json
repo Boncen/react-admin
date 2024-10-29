@@ -5,8 +5,110 @@
     "data": {
       "account": "admin",
       "username": "admin123",
-      "role": "admin",
+      "roles": ["admin"],
       "id": 1001
     }
+  },
+  "menus": {
+    "code": 0,
+    "message": "ok",
+    "data": [
+      {
+        "id": "100001",
+        "parentId": "",
+        "path": "/system",
+        "name": "system",
+        "icon": "",
+        "order": 0,
+        "menuType": 3,
+        "locale": "menu.system",
+        "children": [
+          {
+            "id": "100002",
+            "parentId": "100001",
+            "path": "users",
+            "name": "users",
+            "icon": "",
+            "order": 1,
+            "menuType": 1,
+            "locale": "menu.users",
+            "children": [
+             
+            ]
+          },
+          {
+            "id": "100003",
+            "parentId": "100001",
+            "path": "roles",
+            "name": "roles",
+            "icon": "",
+            "order": 1,
+            "menuType": 1,
+            "locale": "menu.roles",
+            "children": [
+              
+            ]
+          },
+          {
+            "id": "100004",
+            "parentId": "100001",
+            "path": "menus",
+            "name": "menus",
+            "icon": "",
+            "order": 1,
+            "menuType": 1,
+            "locale": "menu.menus",
+            "children": [
+              
+            ]
+          },
+          {
+            "id": "100005",
+            "parentId": "100001",
+            "path": "logs",
+            "name": "logs",
+            "icon": "",
+            "order": 1,
+            "menuType": 1,
+            "locale": "menu.logs",
+            "children": [
+             
+            ]
+          }
+        ]
+      },
+      {
+        "id": "100011",
+        "parentId": "",
+        "path": "/sample",
+        "name": "sample",
+        "icon": "",
+        "order": 0,
+        "menuType": 3,
+        "locale": "menu.sample",
+        "children":[
+          {
+            "id": "100012",
+            "parentId": "100011",
+            "path": "a",
+            "name": "a",
+            "icon": "",
+            "order": 1,
+            "menuType": 1,
+            "locale": "menu.a"
+          },
+          {
+            "id": "100013",
+            "parentId": "100011",
+            "path": "b",
+            "name": "b",
+            "icon": "",
+            "order": 1,
+            "menuType": 1,
+            "locale": "menu.b"
+          }
+        ]
+      }
+    ]
   }
 }

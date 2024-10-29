@@ -3,7 +3,7 @@ import { SampleA } from "@/views/sample/sampleA";
 import { SampleB } from "@/views/sample/sampleB";
 
 export const routes: RouteObject = {
-    path: '/sample',
+    path: 'sample',
     children: [
         {
             path: 'a',
