@@ -19,7 +19,8 @@ export const fullRouteTable: RouteObject[] = [
         index: true,
         element: <Dashboard />,
         meta: {
-          label: 'menu.home'
+          label: 'menu.home',
+          closable: false
         }
       },
 

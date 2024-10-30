@@ -35,7 +35,7 @@ function menuItemToNavItem(menus: MenuItem[], parentKey: string): any {
       itemKey: menu.parentId
         ? _parentKey == ""
           ? menu.name
-          : _parentKey + "_" + menu.name
+          : _parentKey + "/" + menu.name
         : menu.name,
       text: menu.locale ?? menu.name,
       icon: menu.icon,
@@ -75,10 +75,10 @@ function generateRouteMap(
     const key = (
       !parentKey || parentKey == "" || parentKey == "/"
         ? route.path
-        : parentKey + "_" + route.path
-    )!.replace("/", "");
+        : parentKey + "/" + route.path
+    )!;
     const path =
-       !parentKey || parentKey == "" || parentKey == "/"
+      !parentKey || parentKey == "" || parentKey == "/"
         ? route.path
         : parentKey + "/" + route.path;
     if (key && path) {
@@ -88,4 +88,27 @@ function generateRouteMap(
   return result;
 }
 
-export { isDevelopmentEnv, menuItemToNavItem, generateRouteMap };
+/** 根据id(e.g. 0-3-1)找menu */
+function findMenuByNestedId(
+  menuList: Array<MenuItemExt>,
+  id: string
+): MenuItemExt | undefined {
+  const ids = id.split("-");
+  let route: MenuItemExt | undefined = menuList[Number(ids[0])];
+  if (route && route.children) {
+    for (let index = 1; index < ids.length; index++) {
+      const id = Number(ids[index]);
+      if (!isNaN(id)) {
+        route = route.children![id] ?? route;
+      }
+    }
+  }
+  return route;
+}
+
+export {
+  isDevelopmentEnv,
+  menuItemToNavItem,
+  generateRouteMap,
+  findMenuByNestedId,
+};
