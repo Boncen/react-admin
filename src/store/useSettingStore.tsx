@@ -5,9 +5,10 @@ import { persist } from "zustand/middleware";
 
 interface SettingStore {
   setting: Setting;
-  toggleThemeMode: () => void;
-  toggleMultiTab: () => void;
+  toggleThemeMode: (val: boolean) => void;
+  toggleMultiTab: (val: boolean) => void;
   updateLanguage: (lang: string) => void;
+  setIsUseBreadcrumb: (val: boolean) => void;
 }
 
 const useSettingStore = create<SettingStore>()(
@@ -17,32 +18,38 @@ const useSettingStore = create<SettingStore>()(
         isDarkMode: false,
         lang: LocalEnum["zh-CN"],
         isUseMultitab: true,
+        isUseBreadcrumb: true,
       },
-      toggleThemeMode: () =>
+      toggleThemeMode: (val: boolean) =>
         set(
           produce((state) => {
-            state.isDarkMode = !state.isDarkMode;
+            state.isDarkMode = val;
           })
         ),
-      toggleMultiTab: () =>
+      toggleMultiTab: (val: boolean) =>
+        set(
+          // (state) => ({ setting: { ...state.setting, isUseMultitab: val } })
+          produce((state: SettingStore) => {
+            state.setting.isUseMultitab = val;
+          })
+        ),
+      setIsUseBreadcrumb: (val: boolean) =>
+        set(
+          produce((state: SettingStore) => {
+            state.setting.isUseBreadcrumb = val;
+          })
+        ),
+      updateLanguage: (lang: string) => {
         set(
           produce((state) => {
-            state.isUseMultitab = !state.isUseMultitab;
-          })
-        ),
-        updateLanguage: (lang: string) => {
-          // const setting = { ...get().setting, lang: lang };
-          set(produce((state)=>{
             console.log(lang, state);
-            
+
             state.lang = lang;
-          }));
-          // setItem(StorageEnum.Settings, setting);
-        },
+          })
+        );
+      },
     }),
-    {
-      name: "setting",
-    }
+    { name: "setting" }
   )
 );
 

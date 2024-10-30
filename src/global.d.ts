@@ -38,4 +38,12 @@ declare global {
     icon?: ReactElement<any, string | JSXElementConstructor<any>> | null;
     canRoute?: boolean;
   }
+
+  interface Setting {
+    isDarkMode: boolean,
+    lang?:string,
+    isUseMultitab: boolean,
+    isUseBreadcrumb: boolean
+}
+
 }
