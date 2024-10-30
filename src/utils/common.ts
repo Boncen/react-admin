@@ -7,4 +7,8 @@ function trimStartBy(target: string, seperator: string): string {
   return target;
 }
 
-export { trimStartBy };
+function getTimestamp(): string{
+  return Date.now().toString();
+}
+
+export { trimStartBy, getTimestamp };

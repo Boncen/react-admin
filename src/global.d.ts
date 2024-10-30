@@ -25,6 +25,7 @@ declare global {
     itemKey: string;
     text: ReactElement<any, string | JSXElementConstructor<any>> | null;
     closable?: boolean;
+    contentKey: string; // 更改次key方便手动刷新组件
   }
 
   /** RouteObject with meta */

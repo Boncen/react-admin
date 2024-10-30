@@ -1,5 +1,5 @@
 import { Nav } from "@douyinfe/semi-ui";
-import { Breadcrumbs } from "./breadcrumb";
+import { Breadcrumbs } from "../breadcrumb";
 import { Notification } from "./notification";
 import { LanguageSwitcher } from "./languageSwitcher";
 import { HeaderAvatar } from "./headerAvatar";

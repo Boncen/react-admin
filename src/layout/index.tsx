@@ -1,11 +1,8 @@
 import { Layout } from "@douyinfe/semi-ui";
-// import { Outlet } from "react-router-dom";
 import { Footer as FooterLayout } from "./footer";
 import { Header as HeaderLayout } from "./header";
 import { SiderLayout } from "./sider";
-import { MultiTabs } from "./multi-tabs";
-import { useMatches, useOutlet } from "react-router-dom";
-// import { MultiTabs } from "./multitabs_bak";
+import { MultiTabs } from "./multitabs";
 
 
 export function AdminLayout() {
