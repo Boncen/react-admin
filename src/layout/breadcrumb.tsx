@@ -1,4 +1,5 @@
 import useMenuStore from "@/store/useMenuStore";
+import useSettingStore from "@/store/useSettingStore";
 import { findMenuByNestedId } from "@/utils";
 import { Breadcrumb } from "@douyinfe/semi-ui";
 import { useEffect, useState } from "react";
@@ -10,6 +11,7 @@ export function Breadcrumbs() {
   const menus = useMenuStore((state) => state.menus);
   const { t } = useTranslation();
   const [routes, setRoutes] = useState<Array<BreadcrumbItem | string>>([]);
+  const setting = useSettingStore((state) => state.setting);
 
   useEffect(() => {
     const routes: Array<BreadcrumbItem> = [];
@@ -72,11 +74,15 @@ export function Breadcrumbs() {
   //   return (value as BreadcrumbItem).path !== undefined;
   // }
   return (
-    <div className="flex items-center">
-      <Breadcrumb
-        showTooltip={{ opts: { position: "bottom" } }}
-        routes={routes}
-      />
-    </div>
+    <>
+      {setting.isUseBreadcrumb && (
+        <div className="flex items-center">
+          <Breadcrumb
+            showTooltip={{ opts: { position: "bottom" } }}
+            routes={routes}
+          />
+        </div>
+      )}
+    </>
   );
 }

@@ -1,4 +1,5 @@
 import { MenuType } from "@/types/enum";
+import { NavItemPropsWithItems } from "@douyinfe/semi-ui/lib/es/navigation";
 import { RouteObject } from "react-router-dom";
 
 /**
@@ -14,11 +15,14 @@ function isDevelopmentEnv() {
  * @param menus
  * @returns
  */
-function menuItemToNavItem(menus: MenuItem[], parentKey: string): any {
+function menuItemToNavItem(
+  menus: MenuItem[],
+  parentKey: string
+): NavItemPropsWithItemsExt[] | null {
   if (!menus) {
     return null;
   }
-  const result: Array<any> = [];
+  const result: Array<NavItemPropsWithItemsExt> = [];
   let _parentKey = parentKey ?? "";
   for (let index = 0; index < menus.length; index++) {
     const menu = menus[index];
@@ -31,18 +35,19 @@ function menuItemToNavItem(menus: MenuItem[], parentKey: string): any {
     if (menu.menuType == MenuType.CATEGORY) {
       _parentKey += menu.name;
     }
-    const navItem = {
+    const navItem: NavItemPropsWithItemsExt = {
       itemKey: menu.parentId
         ? _parentKey == ""
           ? menu.name
           : _parentKey + "/" + menu.name
         : menu.name,
       text: menu.locale ?? menu.name,
+      locale: menu.locale,
       icon: menu.icon,
       items:
         menu.children && menu.children.length > 0
           ? menuItemToNavItem(menu.children, _parentKey)
-          : null,
+          : undefined,
     };
     result.push(navItem);
   }

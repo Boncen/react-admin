@@ -40,11 +40,11 @@ export function LanguageSwitcher() {
         theme="borderless"
         icon={
           <IconLanguage
-            style={{ color: "var(--semi-color-text-0)" }}
             size="large"
           />
         }
         style={{
+          color: "var(--semi-color-text-2)",
           marginRight: "12px",
         }}
       />

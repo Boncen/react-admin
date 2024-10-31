@@ -41,10 +41,8 @@ const useSettingStore = create<SettingStore>()(
         ),
       updateLanguage: (lang: string) => {
         set(
-          produce((state) => {
-            console.log(lang, state);
-
-            state.lang = lang;
+          produce((state: SettingStore) => {
+            state.setting.lang = lang;
           })
         );
       },

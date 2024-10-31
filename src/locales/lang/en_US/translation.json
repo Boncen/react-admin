@@ -1,5 +1,6 @@
 {
   "ui": {
+    "home": "Dashboard",
     "ok": "Okay",
     "cance": "Cancel",
     "setting": "Setting",
@@ -13,7 +14,9 @@
     "loginFormTitle": "Welcome back!",
     "account": "Account",
     "password":"Password",
-    "login": "Login"
+    "login": "Login",
+    "isUseMultitab": "Use Multi Tab",
+    "isUseBreadcrumb": "Show Breadcrumb"
   },
   "tip": {
     "requestFail": "The request failed.",

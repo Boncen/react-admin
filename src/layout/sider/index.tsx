@@ -10,43 +10,74 @@ import { useTranslation } from "react-i18next";
 import { fullRouteTable, routeMaps } from "@/routes";
 import useStatusStore from "@/store/statusStore";
 import { trimStartBy } from "@/utils/common";
+import useSettingStore from "@/store/useSettingStore";
+import { iconMaps } from "./menuIconMap";
+import { IconMenu } from "@douyinfe/semi-icons";
 
 export function SiderLayout() {
   const menuStore = useMenuStore();
   const { t } = useTranslation();
+  const setting = useSettingStore((state) => state.setting);
   const [selectedKeys, setSelectedKeys] = useState<Array<string>>([]);
-  const [items, setItems] = useState<any[]>([]);
-  const activeRoute = useStatusStore((state)=>state.activeRoute);
+  const [items, setItems] = useState<NavItemPropsWithItemsExt[]>([]);
+  const activeRoute = useStatusStore((state) => state.activeRoute);
+  // const [rawMenus, setRawMenus] = useState<MenuItem[]>([]); // raw menu data from api
 
   // 获取菜单
   useEffect(() => {
     api.getMenus().then((menus: MenuItem[]) => {
-      updateChildNavItem(menus);
+      // setRawMenus(menus);
       const navitems = menuItemToNavItem(menus, "");
-      setItems(navitems);
+
+      // 添加首页
+      if (navitems && !navitems?.find((x) => x.itemKey == "home")) {
+        navitems.unshift({
+          itemKey: "home",
+          text: "",
+          locale: "ui.home",
+          items: [],
+        });
+      }
+      console.log(navitems);
+      setItems(updateChildNavItem(navitems ?? []));
     });
     const full = fullRouteTable;
     menuStore.updateMenus(full);
-  }, []);
-
-  useEffect(()=>{
-    const key = activeRoute.toString();
-    const currentKey = trimStartBy(key, '/');
-    setSelectedKeys([currentKey])
-  }, [activeRoute])
+  }, [menuStore]);
 
   /** 更新子项locale */
-  function updateChildNavItem(childs: MenuItem[]) {
+  // const updateChildNavItem = useCallback(
+  function updateChildNavItem(
+    childs: NavItemPropsWithItemsExt[]
+  ): NavItemPropsWithItemsExt[] {
     if (childs) {
-      for (let index = 0; index < childs.length; index++) {
-        const element = childs[index];
-        element.locale = t(element.locale);
-        if (element.children) {
-          updateChildNavItem(element.children);
+      const copy: NavItemPropsWithItemsExt[] = [...childs];
+      for (let index = 0; index < copy.length; index++) {
+        const element = copy[index];
+        element.text = t(element.locale as string);
+        // if (element.icon) {
+        element.icon = iconMaps[element.itemKey!]; // ?? <IconMenu />;
+        // }
+        if (element.items) {
+          updateChildNavItem(element.items as NavItemPropsWithItemsExt[]);
         }
       }
+      return copy;
     }
+    return childs;
   }
+  //   [t]
+  // );
+
+  useEffect(() => {
+    setItems(updateChildNavItem(items ?? []));
+  }, [setting]);
+
+  useEffect(() => {
+    const key = activeRoute.toString();
+    const currentKey = key == "/" ? "home" : trimStartBy(key, "/");
+    setSelectedKeys([currentKey]);
+  }, [activeRoute]);
 
   return (
     <Nav
@@ -56,6 +87,7 @@ export function SiderLayout() {
       items={items}
       renderWrapper={({ itemElement, props }) => {
         const routerMap = routeMaps;
+        // console.log(routerMap)
         return (
           <>
             {
@@ -69,10 +101,8 @@ export function SiderLayout() {
                   {itemElement}
                 </Link>
               ) : (
-                <div className="flex items-start font-bold">
-                  {/* <IconSetting /> */}
-                {itemElement}
-                </div>
+                // 父级菜单
+                <div className="">{itemElement}</div>
               )
             }
           </>

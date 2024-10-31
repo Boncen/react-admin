@@ -1,5 +1,6 @@
 import { RouteObject } from "react-router-dom";
 import { MenuType } from "./types/enum";
+import { NavItemPropsWithItems } from "@douyinfe/semi-ui/lib/es/navigation";
 
 declare global {
   interface MenuItemMeta {
@@ -29,7 +30,9 @@ declare global {
   }
 
   /** RouteObject with meta */
-  type MenuItemExt = RouteObject & { meta?: MenuItemMeta }
+  type MenuItemExt = RouteObject & { meta?: MenuItemMeta };
+
+  type NavItemPropsWithItemsExt = NavItemPropsWithItems & { locale?: string };
 
   interface BreadcrumbItem {
     name?: string;
@@ -40,10 +43,9 @@ declare global {
   }
 
   interface Setting {
-    isDarkMode: boolean,
-    lang?:string,
-    isUseMultitab: boolean,
-    isUseBreadcrumb: boolean
-}
-
+    isDarkMode: boolean;
+    lang?: string;
+    isUseMultitab: boolean;
+    isUseBreadcrumb: boolean;
+  }
 }

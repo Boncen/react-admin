@@ -13,9 +13,7 @@ import { CircleLoading } from "./components/loading/circleSpin";
 const App = () => {
   const settingStore = useSettingStore((state) => state.setting);
   return (
-    <LocaleProvider
-      locale={settingStore.lang === LocalEnum["zh-CN"] ? zh_CN : en_US}
-    >
+    <LocaleProvider locale={settingStore.lang === LocalEnum["zh-CN"] ? zh_CN : en_US}>
       <Suspense fallback={<CircleLoading />}>
         <RouterProvider router={router} />
       </Suspense>

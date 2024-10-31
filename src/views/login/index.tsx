@@ -62,7 +62,7 @@ export default function Login() {
             label={t("ui.account")}
             onChange={(value) => setUsername(value)}
             trigger="blur"
-            rules={[{ required: true, message: t("ui.validateAccountFail") }]}
+            rules={[{ required: true, message: t("tip.validateAccountFail") }]}
           />
           <Form.Input
             field="Password"
@@ -73,7 +73,7 @@ export default function Login() {
             onChange={(value) => setPassword(value)}
             trigger="blur"
             rules={[
-              { required: true, message: t("ui.validatePasswordFail") },
+              { required: true, message: t("tip.validatePasswordFail") },
               {
                 validator: (_, value) => value?.length >= 5,
                 message: t("tip.validatePasswordLengthFail"),

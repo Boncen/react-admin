@@ -1,19 +1,21 @@
 import useSettingStore from "@/store/useSettingStore";
 import { List, Switch } from "@douyinfe/semi-ui";
 import { useEffect, useState, useMemo } from "react";
+import { useTranslation } from "react-i18next";
 
 export function SettingSideSheet() {
   const settingStore = useSettingStore();
+  const {t} = useTranslation();
   const [data, setData] = useState<
     Array<{ title: string; key: string; value: boolean }>
   >(() => [
     {
-      title: "是否使用多标签页",
+      title: "ui.isUseMultitab",
       key: "isUseMultitab",
       value: settingStore.setting.isUseMultitab,
     },
     {
-      title: "是否使用面包屑",
+      title: "ui.isUseBreadcrumb",
       key: "isUseBreadcrumb",
       value: settingStore.setting.isUseBreadcrumb,
     },
@@ -23,17 +25,17 @@ export function SettingSideSheet() {
   const memoizedData = useMemo(
     () => [
       {
-        title: "是否使用多标签页",
+        title: "ui.isUseMultitab",
         key: "isUseMultitab",
         value: settingStore.setting.isUseMultitab,
       },
       {
-        title: "是否使用面包屑",
+        title: "ui.isUseBreadcrumb",
         key: "isUseBreadcrumb",
         value: settingStore.setting.isUseBreadcrumb,
       },
     ],
-    [settingStore]
+    [settingStore.setting.isUseBreadcrumb, settingStore.setting.isUseMultitab]
   );
 
   useEffect(() => {
@@ -58,24 +60,14 @@ export function SettingSideSheet() {
   };
 
   return (
-    <div
-      style={{
-        padding: "1rem",
-        border: "1px solid var(--semi-color-border)",
-        margin: "1rem",
-      }}
-    >
+    <div>
       <List
         dataSource={data}
         renderItem={(item) => (
           <List.Item
             main={
               <div>
-                <span
-                  style={{ color: "var(--semi-color-text-0)", fontWeight: 500 }}
-                >
-                  {item.title}
-                </span>
+                <span>{t(item.title)}</span>
               </div>
             }
             extra={

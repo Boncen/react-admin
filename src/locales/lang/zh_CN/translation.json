@@ -1,5 +1,6 @@
 {
   "ui": {
+    "home": "首页",
     "ok": "确定",
     "cance": "取消",
     "setting": "设置",
@@ -7,13 +8,15 @@
     "close": "关闭",
     "closeOthers": "关闭其他",
     "closeAll": "关闭全部",
-    "closeLeft":"关闭左边",
-    "closeRight":"关闭右边",
+    "closeLeft": "关闭左边",
+    "closeRight": "关闭右边",
     "tab": "tab",
     "loginFormTitle": "欢迎回来！",
     "account": "账号",
-    "password":"密码",
-    "login": "登录"
+    "password": "密码",
+    "login": "登录",
+    "isUseMultitab": "使用多标签页",
+    "isUseBreadcrumb": "显示面包屑"
   },
   "tip": {
     "requestFail": "请求失败",
