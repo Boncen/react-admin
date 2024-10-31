@@ -76,11 +76,11 @@ export function SiderLayout() {
   useEffect(() => {
     i18n.changeLanguage(setting.lang ?? "");
     setItems(updateChildNavItem(items ?? []));
-  }, [setting.lang]);
+  }, [setting.lang, i18n]);
 
   useEffect(() => {
     const key = activeRoute.toString();
-    const currentKey = key == "/" ? "home" : trimStartBy(key, "/");
+    const currentKey = key == "/" || !key ? "home" : trimStartBy(key, "/");
     setSelectedKeys([currentKey]);
   }, [activeRoute]);
 

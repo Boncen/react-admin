@@ -58,20 +58,17 @@ export function MultiTabs() {
         }
       }
     },
-    [matches, menus]
+    [activeKey, locate.pathname, matches, menus, outlet, statusStore, t, tabs]
   );
   useEffect(() => {
-    // 无标签自动导航到home
-    if (tabs.length === 0) {
-      navigate("/");
-    } else {
+    if (tabs.length > 0) {
       // 激活下一个标签
       const tabIndex = tabs.findIndex((x) => x.itemKey == activeKey);
       if (tabIndex == -1) {
         setActiveKey(tabs.at(-1)!.itemKey);
       }
     }
-  }, [tabs, navigate]);
+  }, [tabs, navigate, activeKey]);
   /** 关闭标签 */
   function handleCloseTab(tabKey: string) {
     setTabs(() => tabs.filter((x) => x.itemKey != tabKey));

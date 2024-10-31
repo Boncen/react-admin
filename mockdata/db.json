@@ -4,8 +4,10 @@
     "message": "ok",
     "data": {
       "account": "admin",
-      "username": "admin123",
-      "roles": ["admin"],
+      "username": "Boncen",
+      "mobile": "17777001234",
+      "roles": [1, 2],
+      "rolesName": ["管理员", "开发者"],
       "id": 1001
     }
   },
@@ -108,6 +110,28 @@
             "locale": "menu.b"
           }
         ]
+      }
+    ]
+  },
+  "role": {
+    "code": 0,
+    "message": "ok",
+    "data": [
+      {
+        "id": 1,
+        "name": "管理员"
+      },
+      {
+        "id": 2,
+        "name": "开发者"
+      },
+      {
+        "id": 3,
+        "name": "客服"
+      },
+      {
+        "id": 4,
+        "name": "运营"
       }
     ]
   }

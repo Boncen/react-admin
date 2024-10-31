@@ -17,8 +17,8 @@ const logout = () => client.post({ url: "/logout" });
 
 const getUserInfo = () => client.get({ url: "/userinfo" });
 const updateUserInfo = (data: any) => client.put({ url: "/userinfo", data });
-const getUserList = (data: any) => client.get({ url: "/users", data });
-const getRoleList = (data: any) => client.get({ url: "/roles", data });
+const getUserList = (data: any) => client.get({ url: "/user", data });
+const getRoleList = (data: any) => client.get({ url: "/role", data });
 
 const getMenus = () => client.get({url: "/menus"})
 

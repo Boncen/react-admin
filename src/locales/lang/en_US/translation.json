@@ -16,7 +16,8 @@
     "password":"Password",
     "login": "Login",
     "isUseMultitab": "Use Multi Tab",
-    "isUseBreadcrumb": "Show Breadcrumb"
+    "isUseBreadcrumb": "Show Breadcrumb",
+    "logout": "Logout"
   },
   "tip": {
     "requestFail": "The request failed.",

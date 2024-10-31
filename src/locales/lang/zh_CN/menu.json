@@ -7,6 +7,7 @@
     "system": "系统管理",
     "home": "首页",
     "userDetail": "用户详情",
-    "page404": "未知页面"
+    "page404": "未知页面",
+    "userProfile":"个人信息"
   }
 }

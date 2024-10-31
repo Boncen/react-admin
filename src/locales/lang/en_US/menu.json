@@ -7,6 +7,7 @@
     "system": "SystemManager",
     "home": "Home",
     "userDetail": "UserDetail",
-    "page404": "UnknownPage"
+    "page404": "UnknownPage",
+    "userProfile":"Your Profile"
   }
 }

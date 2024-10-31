@@ -4,6 +4,7 @@ import { UserDetail } from "@/views/user/detail";
 import { Menus } from "@/views/menu";
 import { LogList } from "@/views/log/list";
 import { RoleList } from "@/views/role/list";
+import { Profile } from "@/views/user/profile";
 
 export const routes = {
   path: "system",
@@ -14,6 +15,14 @@ export const routes = {
       element: <UserList />,
       meta: {
         label: "menu.users",
+      },
+    },
+    {
+      index: true,
+      path: "user/profile",
+      element: <Profile />,
+      meta: {
+        label: "menu.userProfile",
       },
     },
     {
