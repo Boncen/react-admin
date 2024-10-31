@@ -1,5 +1,4 @@
 import { MenuType } from "@/types/enum";
-import { NavItemPropsWithItems } from "@douyinfe/semi-ui/lib/es/navigation";
 import { RouteObject } from "react-router-dom";
 
 /**
@@ -44,6 +43,7 @@ function menuItemToNavItem(
       text: menu.locale ?? menu.name,
       locale: menu.locale,
       icon: menu.icon,
+      // @ts-ignore
       items:
         menu.children && menu.children.length > 0
           ? menuItemToNavItem(menu.children, _parentKey)

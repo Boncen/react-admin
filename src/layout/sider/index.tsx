@@ -12,19 +12,22 @@ import useStatusStore from "@/store/statusStore";
 import { trimStartBy } from "@/utils/common";
 import useSettingStore from "@/store/useSettingStore";
 import { iconMaps } from "./menuIconMap";
-import { IconMenu } from "@douyinfe/semi-icons";
 
 export function SiderLayout() {
   const menuStore = useMenuStore();
-  const { t } = useTranslation();
+  const { t,i18n } = useTranslation();
   const setting = useSettingStore((state) => state.setting);
   const [selectedKeys, setSelectedKeys] = useState<Array<string>>([]);
   const [items, setItems] = useState<NavItemPropsWithItemsExt[]>([]);
   const activeRoute = useStatusStore((state) => state.activeRoute);
-  // const [rawMenus, setRawMenus] = useState<MenuItem[]>([]); // raw menu data from api
+
+
+  const full = fullRouteTable;
+  menuStore.updateMenus(full);
 
   // 获取菜单
   useEffect(() => {
+    console.log('sider running', setting.lang);
     api.getMenus().then((menus: MenuItem[]) => {
       // setRawMenus(menus);
       const navitems = menuItemToNavItem(menus, "");
@@ -35,18 +38,18 @@ export function SiderLayout() {
           itemKey: "home",
           text: "",
           locale: "ui.home",
-          items: [],
         });
       }
-      console.log(navitems);
-      setItems(updateChildNavItem(navitems ?? []));
+      // console.log(navitems);
+      const _items = updateChildNavItem(navitems ?? [])
+      setItems(_items);
     });
-    const full = fullRouteTable;
-    menuStore.updateMenus(full);
-  }, [menuStore]);
+ 
+  }, []);
 
-  /** 更新子项locale */
+
   // const updateChildNavItem = useCallback(
+    /** 更新子项locale */
   function updateChildNavItem(
     childs: NavItemPropsWithItemsExt[]
   ): NavItemPropsWithItemsExt[] {
@@ -69,9 +72,11 @@ export function SiderLayout() {
   //   [t]
   // );
 
+  /** 响应语言变化 */
   useEffect(() => {
+    i18n.changeLanguage(setting.lang ?? "");
     setItems(updateChildNavItem(items ?? []));
-  }, [setting]);
+  }, [setting.lang]);
 
   useEffect(() => {
     const key = activeRoute.toString();
