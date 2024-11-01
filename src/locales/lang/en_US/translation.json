@@ -2,6 +2,8 @@
   "ui": {
     "home": "Dashboard",
     "ok": "Okay",
+    "back": "Go back",
+    "backToHome": "Go back to home",
     "cance": "Cancel",
     "setting": "Setting",
     "refresh": "Refresh",
@@ -17,7 +19,8 @@
     "login": "Login",
     "isUseMultitab": "Use Multi Tab",
     "isUseBreadcrumb": "Show Breadcrumb",
-    "logout": "Logout"
+    "logout": "Logout",
+    "pageNotFound": "Page not found"
   },
   "tip": {
     "requestFail": "The request failed.",

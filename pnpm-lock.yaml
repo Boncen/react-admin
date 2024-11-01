@@ -11,6 +11,9 @@ importers:
       '@douyinfe/semi-icons':
         specifier: ^2.68.3
         version: 2.68.3(react@18.3.1)
+      '@douyinfe/semi-illustrations':
+        specifier: ^2.68.3
+        version: 2.68.3(react@18.3.1)
       '@douyinfe/semi-ui':
         specifier: ^2.68.3
         version: 2.68.3(acorn@8.14.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)

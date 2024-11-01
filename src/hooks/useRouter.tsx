@@ -9,6 +9,7 @@ export function UseRouter() {
   function push(name: string, params?: Record<string, string | number>) {
     const menu = find(menuStore.menus, (item) => item.name == name);
     if (!menu) {
+      navigate('/page_not_found');
       throw new Error(`route name '${name}' not found!`);
     }
     let path: string = menu.fullPath;

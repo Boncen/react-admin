@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@douyinfe/semi-icons": "^2.68.3",
+    "@douyinfe/semi-illustrations": "^2.68.3",
     "@douyinfe/semi-ui": "^2.68.3",
     "axios": "^1.7.7",
     "i18next": "^23.16.4",

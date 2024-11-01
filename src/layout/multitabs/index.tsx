@@ -4,7 +4,7 @@ import { findMenuByNestedId } from "@/utils/routeMenu";
 import { getTimestamp } from "@/utils/common";
 import { IconClose } from "@douyinfe/semi-icons";
 import { Divider, Dropdown, TabPane, Tabs } from "@douyinfe/semi-ui";
-import { useEffect, useState } from "react";
+import { act, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   useLocation,
@@ -12,6 +12,8 @@ import {
   useNavigate,
   useOutlet,
 } from "react-router-dom";
+import React from "react";
+import { CloseTabContext } from "./closeTabContext";
 
 export function MultiTabs() {
   const matches = useMatches();
@@ -34,9 +36,12 @@ export function MultiTabs() {
       }
       const match = matches[matches.length - 1];
       if (match) {
+        console.log('match ---> ', match, tabs);
+        
         if (tabs.findIndex((z) => z.itemKey == match.pathname) < 0) {
           // 找到路由
           const route = findMenuByNestedId(menus, match.id);
+          console.log('route ---> ', route);
           if (route) {
             // 添加标签
             setTabs(() => [
@@ -62,6 +67,7 @@ export function MultiTabs() {
   );
   useEffect(() => {
     if (tabs.length > 0) {
+      console.log('70----->', tabs)
       // 激活下一个标签
       const tabIndex = tabs.findIndex((x) => x.itemKey == activeKey);
       if (tabIndex == -1) {
@@ -69,11 +75,14 @@ export function MultiTabs() {
         navigate(tabs.at(-1)!.itemKey);
       }
     }
-  }, [tabs, navigate, activeKey]);
+  }, [navigate, activeKey]);
 
   /** 关闭标签 */
   function handleCloseTab(tabKey: string) {
     setTabs(() => tabs.filter((x) => x.itemKey != tabKey));
+    if (activeKey == tabKey) {
+      setActiveKey('');
+    }
   }
   function handleTabClick(key: string) {
     if (activeKey != key) {
@@ -226,6 +235,11 @@ export function MultiTabs() {
       </div>
     );
   };
+
+  /** 关闭当前页 */
+  const handleCloseCurrentTab = () => {
+    handleCloseTab(activeKey);
+  };
   return (
     <Tabs
       type="card"
@@ -241,7 +255,11 @@ export function MultiTabs() {
           itemKey={t.itemKey}
           key={t.itemKey}
         >
-          <div key={t.contentKey}>{t.text}</div>
+          <div key={t.contentKey}>
+            <CloseTabContext.Provider value={{closeCurrentTab: handleCloseCurrentTab}}>
+              {t.text}
+            </CloseTabContext.Provider>
+          </div>
         </TabPane>
       ))}
     </Tabs>

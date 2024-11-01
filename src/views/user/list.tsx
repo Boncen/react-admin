@@ -3,7 +3,7 @@ import { UseRouter } from "@/hooks/useRouter";
 export function UserList() {
   const { push } = UseRouter();
   function goDetail(): void {
-    push("userDetail", { id: 666 });
+    push("userDetail99", { id: 666 });
   }
 
   return (
