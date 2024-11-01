@@ -5,7 +5,7 @@ import "./sider.less";
 import { useEffect, useState } from "react";
 import api from "@/api";
 import useMenuStore from "@/store/useMenuStore";
-import { menuItemToNavItem } from "@/utils";
+import { menuItemToNavItem } from "@/utils/routeMenu";
 import { useTranslation } from "react-i18next";
 import { fullRouteTable, routeMaps } from "@/routes";
 import useStatusStore from "@/store/statusStore";

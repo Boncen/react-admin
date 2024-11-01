@@ -30,7 +30,12 @@ declare global {
   }
 
   /** RouteObject with meta */
-  type MenuItemExt = RouteObject & { meta?: MenuItemMeta };
+  type MenuItemExt = RouteObject & {
+    meta?: MenuItemMeta;
+    name: string;
+    fullPath?: string;
+    children?: MenuItemExt[];
+  };
 
   type NavItemPropsWithItemsExt = NavItemPropsWithItems & { locale?: string };
 

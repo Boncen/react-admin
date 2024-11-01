@@ -20,7 +20,6 @@ export function SettingSideSheet() {
       value: settingStore.setting.isUseBreadcrumb,
     },
   ]);
-  console.log(data, settingStore.setting);
   // 使用 useMemo 避免重复创建相同的 data 数组
   const memoizedData = useMemo(
     () => [

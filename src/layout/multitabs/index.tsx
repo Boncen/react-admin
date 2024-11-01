@@ -1,6 +1,6 @@
 import useStatusStore from "@/store/statusStore";
 import useMenuStore from "@/store/useMenuStore";
-import { findMenuByNestedId } from "@/utils";
+import { findMenuByNestedId } from "@/utils/routeMenu";
 import { getTimestamp } from "@/utils/common";
 import { IconClose } from "@douyinfe/semi-icons";
 import { Divider, Dropdown, TabPane, Tabs } from "@douyinfe/semi-ui";
@@ -58,7 +58,7 @@ export function MultiTabs() {
         }
       }
     },
-    [activeKey, locate.pathname, matches, menus, outlet, statusStore, t, tabs]
+    [matches, menus]
   );
   useEffect(() => {
     if (tabs.length > 0) {
@@ -66,9 +66,11 @@ export function MultiTabs() {
       const tabIndex = tabs.findIndex((x) => x.itemKey == activeKey);
       if (tabIndex == -1) {
         setActiveKey(tabs.at(-1)!.itemKey);
+        navigate(tabs.at(-1)!.itemKey);
       }
     }
   }, [tabs, navigate, activeKey]);
+
   /** 关闭标签 */
   function handleCloseTab(tabKey: string) {
     setTabs(() => tabs.filter((x) => x.itemKey != tabKey));

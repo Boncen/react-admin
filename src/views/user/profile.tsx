@@ -1,4 +1,5 @@
 import api from "@/api";
+import useUserStore from "@/store/userStore";
 import { Form, Button, Toast } from "@douyinfe/semi-ui";
 import { useEffect, useRef, useState } from "react";
 export function Profile() {
@@ -10,7 +11,7 @@ export function Profile() {
     mobile: "",
     roles: [],
   });
-
+  const userStore = useUserStore();
   const formapi = useRef<any>();
 
   useEffect(() => {
@@ -32,6 +33,12 @@ export function Profile() {
   function handleSubmitForm(v: any): void {
     // api.updateUserInfo(v).then(() => { Toast.success('success') })
     Toast.success(JSON.stringify(v));
+    userStore.actions.setUserInfo({
+      ...userStore.userInfo,
+      username: v.name,
+      mobile: v.mobile,
+      roles: v.roles
+    })
   }
 
   return (

@@ -1,6 +1,6 @@
 import useMenuStore from "@/store/useMenuStore";
 import useSettingStore from "@/store/useSettingStore";
-import { findMenuByNestedId } from "@/utils";
+import { findMenuByNestedId } from "@/utils/routeMenu";
 import { Breadcrumb } from "@douyinfe/semi-ui";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";

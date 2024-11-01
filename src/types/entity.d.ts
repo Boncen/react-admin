@@ -6,13 +6,14 @@ interface UserToken {
 
 interface UserInfo {
   id: string;
-  email: string;
+  email?: string;
   username: string;
   password?: string;
   avatar?: string;
-  role?: string[];
+  roles?: string[];
   permissions?: Permission[];
   token?: string;
+  mobile: string;
 }
 
 interface Organization {

@@ -24,9 +24,10 @@ export default [
       'react-hooks': reactHooks,
     },
     rules: {
+      ...reactHooks.configs.recommended.rules,
       "@typescript-eslint/no-explicit-any": ["off"],
       "@typescript-eslint/ban-ts-comment": ["off"],
-      ...reactHooks.configs.recommended.rules,
+      "react-hooks/exhaustive-deps": ["off"],
     },
   },
   { ignores: ['dist/'] },
