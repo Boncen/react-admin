@@ -4,7 +4,7 @@ import { findMenuByNestedId } from "@/utils/routeMenu";
 import { getTimestamp } from "@/utils/common";
 import { IconClose } from "@douyinfe/semi-icons";
 import { Divider, Dropdown, TabPane, Tabs } from "@douyinfe/semi-ui";
-import { act, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   useLocation,
@@ -12,7 +12,6 @@ import {
   useNavigate,
   useOutlet,
 } from "react-router-dom";
-import React from "react";
 import { CloseTabContext } from "./closeTabContext";
 
 export function MultiTabs() {
@@ -30,21 +29,18 @@ export function MultiTabs() {
 
   useEffect(
     function () {
-      if (locate.pathname != activeKey) {
-        setActiveKey(locate.pathname);
-        statusStore.updateActiveRoute(locate.pathname);
-      }
+      
       const match = matches[matches.length - 1];
       if (match) {
         console.log('match ---> ', match, tabs);
-        
+
         if (tabs.findIndex((z) => z.itemKey == match.pathname) < 0) {
           // 找到路由
           const route = findMenuByNestedId(menus, match.id);
           console.log('route ---> ', route);
           if (route) {
             // 添加标签
-            setTabs(() => [
+            setTabs([
               ...tabs,
               {
                 tab:
@@ -59,7 +55,12 @@ export function MultiTabs() {
                 contentKey: getTimestamp(),
               },
             ]);
+            //setActiveKey(match.pathname);
           }
+        }
+        if (locate.pathname != activeKey) {
+          setActiveKey(locate.pathname);
+          statusStore.updateActiveRoute(locate.pathname);
         }
       }
     },
@@ -67,26 +68,25 @@ export function MultiTabs() {
   );
   useEffect(() => {
     if (tabs.length > 0) {
-      console.log('70----->', tabs)
       // 激活下一个标签
       const tabIndex = tabs.findIndex((x) => x.itemKey == activeKey);
       if (tabIndex == -1) {
-        setActiveKey(tabs.at(-1)!.itemKey);
         navigate(tabs.at(-1)!.itemKey);
+      } else {
+        setActiveKey(activeKey);
       }
     }
-  }, [navigate, activeKey]);
+  }, [navigate, tabs]);
 
   /** 关闭标签 */
   function handleCloseTab(tabKey: string) {
     setTabs(() => tabs.filter((x) => x.itemKey != tabKey));
     if (activeKey == tabKey) {
-      setActiveKey('');
+      setActiveKey('')
     }
   }
   function handleTabClick(key: string) {
     if (activeKey != key) {
-      setActiveKey(key);
       statusStore.updateActiveRoute(key);
       navigate(key);
     }
@@ -200,8 +200,8 @@ export function MultiTabs() {
                   tab.itemKey === activeKey
                     ? "#3DAEE9"
                     : tab.itemKey === hoverItemKey
-                    ? "var(--semi-color-fill-0)"
-                    : "",
+                      ? "var(--semi-color-fill-0)"
+                      : "",
                 color:
                   tab.itemKey === activeKey
                     ? "#fff"
@@ -256,7 +256,7 @@ export function MultiTabs() {
           key={t.itemKey}
         >
           <div key={t.contentKey}>
-            <CloseTabContext.Provider value={{closeCurrentTab: handleCloseCurrentTab}}>
+            <CloseTabContext.Provider value={{ closeCurrentTab: handleCloseCurrentTab }}>
               {t.text}
             </CloseTabContext.Provider>
           </div>

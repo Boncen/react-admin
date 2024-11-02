@@ -28,5 +28,9 @@ export function UseRouter() {
     navigate(path);
   }
 
-  return { push };
+  function jump(delta: number) {
+    navigate(delta);
+  }
+
+  return { push, jump };
 }

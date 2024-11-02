@@ -3,13 +3,14 @@ import {
   IllustrationNotFound,
   IllustrationNotFoundDark,
 } from "@douyinfe/semi-illustrations";
-import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useContext } from "react";
 import { CloseTabContext } from "@/layout/multitabs/closeTabContext";
+import { UseRouter } from "@/hooks/useRouter";
 
 export function Page404() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  const { push, jump } = UseRouter();
   const { t } = useTranslation();
   const context = useContext(CloseTabContext);
   return (
@@ -26,7 +27,7 @@ export function Page404() {
             style={{ padding: "6px 24px", marginRight: 12 }}
             type="primary"
             onClick={() => {
-              navigate(-1);
+              jump(-1);
               if (context?.closeCurrentTab) {
                 context.closeCurrentTab();
               }
@@ -42,7 +43,7 @@ export function Page404() {
               if (context?.closeCurrentTab) {
                 context.closeCurrentTab();
               }
-              navigate("/");
+              push("home");
             }}
           >
             {t("ui.backToHome")}
