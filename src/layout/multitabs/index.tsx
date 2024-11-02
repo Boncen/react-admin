@@ -29,35 +29,35 @@ export function MultiTabs() {
 
   useEffect(
     function () {
-      
+
       const match = matches[matches.length - 1];
       if (match) {
         console.log('match ---> ', match, tabs);
+        let tab = tabs.find((z) => z.itemKey == match.pathname)
+        if (!tab) {
 
-        if (tabs.findIndex((z) => z.itemKey == match.pathname) < 0) {
           // 找到路由
           const route = findMenuByNestedId(menus, match.id);
-          console.log('route ---> ', route);
           if (route) {
+            tab = {
+              tab:
+                t(route.meta?.label as string)?.length > 0
+                  ? t(route.meta?.label as string)
+                  : route.path!,
+              closable:
+                route.meta?.closable == undefined ||
+                route.meta?.closable == true,
+              itemKey: match.pathname,
+              text: outlet,
+              contentKey: getTimestamp(),
+            }
             // 添加标签
             setTabs([
-              ...tabs,
-              {
-                tab:
-                  t(route.meta?.label as string)?.length > 0
-                    ? t(route.meta?.label as string)
-                    : route.path!,
-                closable:
-                  route.meta?.closable == undefined ||
-                  route.meta?.closable == true,
-                itemKey: match.pathname,
-                text: outlet,
-                contentKey: getTimestamp(),
-              },
+              ...tabs, tab
             ]);
-            //setActiveKey(match.pathname);
           }
         }
+        document.title = document.title.split('-')[0] + " - " + tab!.tab; 
         if (locate.pathname != activeKey) {
           setActiveKey(locate.pathname);
           statusStore.updateActiveRoute(locate.pathname);
