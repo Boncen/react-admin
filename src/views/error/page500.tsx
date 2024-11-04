@@ -24,14 +24,14 @@ export function Page500() {
              >
                {t('ui.back')}
              </Button>
-             <Button
+             {/* <Button
                style={{ padding: "6px 24px" }}
                theme="solid"
                type="primary"
                onClick={() => navigate("/")}
              >
                {t('ui.backToHome')}
-             </Button>
+             </Button> */}
            </div>
          </Empty>
        </div>

@@ -15,6 +15,8 @@
     "@douyinfe/semi-icons": "^2.68.3",
     "@douyinfe/semi-illustrations": "^2.68.3",
     "@douyinfe/semi-ui": "^2.68.3",
+    "@visactor/react-vchart": "^1.12.10",
+    "@visactor/vchart-semi-theme": "^1.12.2",
     "axios": "^1.7.7",
     "i18next": "^23.16.4",
     "i18next-browser-languagedetector": "^8.0.0",

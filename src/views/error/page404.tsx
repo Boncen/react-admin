@@ -35,7 +35,7 @@ export function Page404() {
           >
             {t("ui.back")}
           </Button>
-          <Button
+          {/* <Button
             style={{ padding: "6px 24px" }}
             theme="solid"
             type="primary"
@@ -47,7 +47,7 @@ export function Page404() {
             }}
           >
             {t("ui.backToHome")}
-          </Button>
+          </Button> */}
         </div>
       </Empty>
     </div>
