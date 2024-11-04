@@ -20,7 +20,10 @@
     "isUseMultitab": "Use Multi Tab",
     "isUseBreadcrumb": "Show Breadcrumb",
     "logout": "Logout",
-    "pageNotFound": "Page not found"
+    "pageNotFound": "Page not found",
+    "switchToDarkMode": "Switch to dark mode",
+    "switchToLightMode": "Switch to light mode",
+    "languageSwitcher": "Switch language"
   },
   "tip": {
     "requestFail": "The request failed.",

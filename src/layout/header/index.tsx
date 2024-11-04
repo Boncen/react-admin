@@ -4,6 +4,7 @@ import { Notification } from "./notification";
 import { LanguageSwitcher } from "./languageSwitcher";
 import { HeaderAvatar } from "./headerAvatar";
 import { HeaderSetting } from "./headerSetting";
+import { ThemeMode } from "./headerThemeMode";
 
 export function Header() {
 
@@ -19,6 +20,7 @@ export function Header() {
                     <>
                         <Notification />
                         <LanguageSwitcher />
+                        <ThemeMode />
                         <HeaderSetting />
                       <HeaderAvatar />
                     </>

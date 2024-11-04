@@ -4,5 +4,5 @@ import { ReactNode } from "react";
 export const iconMaps: Record<string, ReactNode> = {
     'home': <IconHome />,
     'system': <IconSetting />,
-    // '': <IconMenu />
+    // 'system/roles': <IconSetting />,
   }

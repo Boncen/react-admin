@@ -5,8 +5,8 @@ import { Button, Dropdown } from "@douyinfe/semi-ui";
 import { useTranslation } from "react-i18next";
 
 export function LanguageSwitcher() {
-  const {setting, updateLanguage} = useSettingStore();
-  const {  i18n } = useTranslation();
+  const { setting, updateLanguage } = useSettingStore();
+  const { i18n } = useTranslation();
 
   function handleChangeLanguage(key: string) {
     i18n.changeLanguage(key);
@@ -21,7 +21,9 @@ export function LanguageSwitcher() {
         <Dropdown.Menu>
           <Dropdown.Item
             onClick={() => handleChangeLanguage(LocalEnum["zh-CN"])}
-            className={setting.lang === LocalEnum["zh-CN"] ? "text-blue-500	" : "	"}
+            className={
+              setting.lang === LocalEnum["zh-CN"] ? "text-blue-500	" : "	"
+            }
           >
             简体中文
           </Dropdown.Item>
@@ -29,25 +31,23 @@ export function LanguageSwitcher() {
             onClick={() => {
               handleChangeLanguage(LocalEnum["en-US"]);
             }}
-            className={setting.lang === LocalEnum["en-US"] ? "text-blue-500	" : ""}
+            className={
+              setting.lang === LocalEnum["en-US"] ? "text-blue-500	" : ""
+            }
           >
             English
           </Dropdown.Item>
         </Dropdown.Menu>
       }
     >
-      <Button
-        theme="borderless"
-        icon={
-          <IconLanguage
-            size="large"
-          />
-        }
-        style={{
-          color: "var(--semi-color-text-2)",
-          marginRight: "12px",
-        }}
-      />
+        <Button
+          theme="borderless"
+          icon={<IconLanguage size="large" />}
+          style={{
+            color: "var(--semi-color-text-2)",
+            marginRight: "12px",
+          }}
+        />
     </Dropdown>
   );
 }

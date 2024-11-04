@@ -23,7 +23,7 @@ const useSettingStore = create<SettingStore>()(
       toggleThemeMode: (val: boolean) =>
         set(
           produce((state) => {
-            state.isDarkMode = val;
+            state.setting.isDarkMode = val;
           })
         ),
       toggleMultiTab: (val: boolean) =>

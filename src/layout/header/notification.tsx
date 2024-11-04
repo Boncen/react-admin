@@ -13,14 +13,14 @@ import { useTranslation } from "react-i18next";
 export function Notification() {
   return (
     <Popover trigger={"click"} content={<NotificationPopup />}>
-      <Button
-        theme="borderless"
-        icon={<IconBell size="large" />}
-        style={{
-          color: "var(--semi-color-text-2)",
-          marginRight: "12px",
-        }}
-      />
+        <Button
+          theme="borderless"
+          icon={<IconBell size="large" />}
+          style={{
+            color: "var(--semi-color-text-2)",
+            marginRight: "12px",
+          }}
+        />
     </Popover>
   );
 }
@@ -54,19 +54,23 @@ function NotificationPopup() {
   const updateList = (item: string) => {
     let newList;
     if (item) {
-        newList = data.filter(i => item !== i);
+      newList = data.filter((i) => item !== i);
     } else {
-        newList = data.concat(data.slice(data.length, data.length + 1));
+      newList = data.concat(data.slice(data.length, data.length + 1));
     }
     setData(newList);
-};
+  };
 
   return (
     <div className="p-2 w-[300px]">
       <h2 className="text-[20px] p-2 font-bold">消息</h2>
       <Space>
         <Button size="small">全部已读</Button>
-        <Popconfirm position={"bottomRight"} title={t("tip.ifClearAllItem")} onConfirm={onConfirm}>
+        <Popconfirm
+          position={"bottomRight"}
+          title={t("tip.ifClearAllItem")}
+          onConfirm={onConfirm}
+        >
           <Button size="small" type="danger">
             清空
           </Button>
@@ -78,9 +82,15 @@ function NotificationPopup() {
           split={true}
           renderItem={(item) => (
             <List.Item className="list-item">
-               <Button type='danger' theme='borderless' icon={<IconMinusCircle />} onClick={() => updateList(item)} style={{ marginRight: 4 }} />
+              <Button
+                type="danger"
+                theme="borderless"
+                icon={<IconMinusCircle />}
+                onClick={() => updateList(item)}
+                style={{ marginRight: 4 }}
+              />
               {item}
-              </List.Item>
+            </List.Item>
           )}
         />
         <Pagination
