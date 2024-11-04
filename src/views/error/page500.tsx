@@ -14,9 +14,10 @@ export function Page500() {
            darkModeImage={
              <IllustrationFailureDark style={{ width: 150, height: 150 }} />
            }
-           description={error.message}
+       
          >
            <div>
+            <div className="text-red-600 mb-8">error: {error.message}</div>
              <Button
                style={{ padding: "6px 24px", marginRight: 12 }}
                type="primary"

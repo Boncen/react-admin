@@ -53,4 +53,20 @@ declare global {
     isUseMultitab: boolean;
     isUseBreadcrumb: boolean;
   }
+  interface SearchFormData {
+    type: "string" | "date" | "number" | "date-range" | "number-range" | "time" | "select" | "multi-select";
+    name: string;
+    label: string;
+    isHide?: boolean;
+    placeholder?: string;
+    /** 多选 */
+    options?: Array<any>;
+  }
+  interface SearchFormConfig {
+    col: number,
+    datas: Array<SearchFormData>,
+    submit?: (result: Record<string, any>) => void
+  }
+
+
 }
