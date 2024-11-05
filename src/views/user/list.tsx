@@ -21,7 +21,7 @@ import { Pagination } from "@douyinfe/semi-ui/lib/es/table";
 import { SetStateAction, useMemo, useState } from "react";
 
 export function UserList() {
-  const [selectedKeys, setSelectedKeys] = useState([]);
+  const [, setSelectedKeys] = useState([]);
   const { push } = UseRouter();
 
   const columns = useMemo(
@@ -146,7 +146,7 @@ export function UserList() {
     []
   );
 
-  const rowSelection = {
+  const rowSelection: any = {
     getCheckboxProps: (record: { name: string }) => ({
       // disabled: record.name === "设计文档",
       name: record.name,

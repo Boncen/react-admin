@@ -90,8 +90,8 @@ export function MenuPermissionModal({
       <Tree
         treeData={treeData}
         multiple
-        checkRelation="unRelated"
-        blockNode={false}
+        disableStrictly
+        blockNode={true}
         onChange={onChange}
       />
     </>

@@ -17,9 +17,10 @@ import { MenuPermissionModal } from "./menuPermissionModal";
 import { Value } from "@douyinfe/semi-ui/lib/es/tree";
 
 export function RoleList() {
-  const [selectedKeys, setSelectedKeys] = useState([]);
+  const [, setSelectedKeys] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [permissions, setPermissions] = useState<Value | undefined>();
+  const [focusingRole, setFocusingRole] = useState();
 
   const columns = useMemo(
     () => [
@@ -74,6 +75,7 @@ export function RoleList() {
           function onClickSettingPermission(record: any): void {
             console.log(record);
             setShowModal(true);
+            setFocusingRole(record.id);
           }
 
           return (
@@ -146,7 +148,7 @@ export function RoleList() {
     []
   );
 
-  const rowSelection = {
+  const rowSelection: any = {
     getCheckboxProps: (record: { name: string }) => ({
       // disabled: record.name === "设计文档",
       name: record.name,
@@ -175,7 +177,7 @@ export function RoleList() {
   );
 
   /**斑马条纹 */
-  const handleRow = (record: any, index: number | undefined) => {
+  const handleRow = (_: any, index: number | undefined) => {
     if (index != undefined && index % 2 === 0) {
       return {
         style: {
@@ -188,8 +190,8 @@ export function RoleList() {
   };
 
   const handleModalOk = () => {
-    Toast.success(JSON.stringify(permissions));
-    setShowModal(false)
+    Toast.success(focusingRole + "-" + JSON.stringify(permissions));
+    setShowModal(false);
   };
   function handlePermissionChange(value?: Value | undefined): void {
     console.log("tree:", value);

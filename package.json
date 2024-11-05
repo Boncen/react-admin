@@ -12,9 +12,9 @@
     "serve": "npx json-server --port 9898 mockdata/db.json"
   },
   "dependencies": {
-    "@douyinfe/semi-icons": "^2.68.3",
-    "@douyinfe/semi-illustrations": "^2.68.3",
-    "@douyinfe/semi-ui": "^2.68.3",
+    "@douyinfe/semi-icons": "^2.68.4",
+    "@douyinfe/semi-illustrations": "^2.68.4",
+    "@douyinfe/semi-ui": "^2.68.4",
     "@visactor/react-vchart": "^1.12.10",
     "@visactor/vchart-semi-theme": "^1.12.2",
     "axios": "^1.7.7",
@@ -31,7 +31,7 @@
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
     "@eslint/compat": "^1.2.2",
-    "@eslint/js": "^9.13.0",
+    "@eslint/js": "^9.14.0",
     "@rsbuild/core": "^1.0.19",
     "@rsbuild/plugin-less": "^1.1.0",
     "@rsbuild/plugin-react": "^1.0.6",
@@ -39,14 +39,14 @@
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "autoprefixer": "^10.4.20",
-    "eslint": "^9.13.0",
+    "eslint": "^9.14.0",
     "eslint-plugin-react": "^7.37.2",
     "eslint-plugin-react-hooks": "^5.0.0",
-    "globals": "^15.11.0",
+    "globals": "^15.12.0",
     "postcss": "^8.4.47",
     "postcss-loader": "^8.1.1",
     "tailwindcss": "^3.4.14",
     "typescript": "^5.6.3",
-    "typescript-eslint": "^8.12.2"
+    "typescript-eslint": "^8.13.0"
   }
 }
