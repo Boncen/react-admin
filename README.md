@@ -35,3 +35,5 @@ Preview the production build locally:
 ```bash
 pnpm preview
 ```
+
+![home page](demo.png)
