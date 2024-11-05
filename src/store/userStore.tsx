@@ -1,6 +1,7 @@
 import { StorageEnum } from "@/types/enum";
-import { getItem, getStringItem, removeItem, setItem } from "@/utils/storage";
+import { getItem, getStringItem } from "@/utils/storage";
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 type userStore = {
   userInfo: UserInfo;
@@ -12,25 +13,30 @@ type userStore = {
   };
 };
 
-const useUserStore = create<userStore>()((set) => ({
-  userInfo: getItem<UserInfo>(StorageEnum.User) ?? ({} as UserInfo),
-  userToken: getStringItem(StorageEnum.Token),
-  actions: {
-    setUserInfo: (userInfo: UserInfo) => {
-      set({ userInfo });
-      setItem(StorageEnum.User, userInfo);
-    },
-    setUserToken: (userToken: string) => {
-      set({ userToken });
-      // setItem(StorageEnum.Token, userToken);
-    },
-    clearUserInfoAndToken() {
-      set({ userInfo: {} as UserInfo, userToken: "" });
-      removeItem(StorageEnum.User);
-      removeItem(StorageEnum.Token);
-    },
-  },
-}));
+const useUserStore = create<userStore>()(
+  persist(
+    (set) => ({
+      userInfo: getItem<UserInfo>(StorageEnum.User) ?? ({} as UserInfo),
+      userToken: getStringItem(StorageEnum.Token),
+      actions: {
+        setUserInfo: (userInfo: UserInfo) => {
+          set({ userInfo });
+          //setItem(StorageEnum.User, userInfo);
+        },
+        setUserToken: (userToken: string) => {
+          set({ userToken });
+          // setItem(StorageEnum.Token, userToken);
+        },
+        clearUserInfoAndToken() {
+          set({ userInfo: {} as UserInfo, userToken: "" });
+          // removeItem(StorageEnum.User);
+          // removeItem(StorageEnum.Token);
+        },
+      },
+    }),
+    { name: "user" }
+  )
+);
 
 export default useUserStore;
 

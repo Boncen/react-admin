@@ -5,6 +5,7 @@ import { SiderLayout } from "./sider";
 import { MultiTabs } from "./multitabs";
 import useSettingStore from "@/store/useSettingStore";
 import { Outlet } from "react-router-dom";
+import { AuthGuard } from "@/components/auth-guard";
 
 export function AdminLayout() {
   const { Header, Footer, Sider, Content } = Layout;
@@ -27,9 +28,12 @@ export function AdminLayout() {
             backgroundColor: "var(--semi-color-bg-0)",
           }}
         >
-          <div className="h-full shadow-md p-1">
-            {setting.isUseMultitab ? <MultiTabs /> : <Outlet />}
-          </div>
+          {/* 所有页面都需要登录 */}
+          <AuthGuard>
+            <div className="h-full shadow-md p-1">
+              {setting.isUseMultitab ? <MultiTabs /> : <Outlet />}
+            </div>
+          </AuthGuard>
         </Content>
         <Footer>
           <FooterLayout></FooterLayout>

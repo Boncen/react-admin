@@ -3,7 +3,7 @@ import useMenuStore from "@/store/useMenuStore";
 import { findMenuByNestedId } from "@/utils/routeMenu";
 import { getTimestamp } from "@/utils/common";
 import { IconClose } from "@douyinfe/semi-icons";
-import { Divider, Dropdown, TabPane, Tabs } from "@douyinfe/semi-ui";
+import { Divider, Dropdown, TabPane, Tabs, Toast } from "@douyinfe/semi-ui";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -76,6 +76,10 @@ export function MultiTabs() {
 
   /** 关闭标签 */
   function handleCloseTab(tabKey: string) {
+    if (tabs.length <= 1) {
+      Toast.info('留一个😃');
+      return;
+    }
     setTabs(() => tabs.filter((x) => x.itemKey != tabKey));
     if (activeKey == tabKey) {
       setActiveKey("");

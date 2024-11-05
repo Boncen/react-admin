@@ -9,7 +9,7 @@ import {
   Toast,
 } from "@douyinfe/semi-ui";
 import { Pagination } from "@douyinfe/semi-ui/lib/es/table";
-import { SetStateAction, useMemo } from "react";
+import { useMemo } from "react";
 
 export function LogList() {
   const columns = useMemo(

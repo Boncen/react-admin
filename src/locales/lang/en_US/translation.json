@@ -32,6 +32,7 @@
     "loginSuccessTitle": "login successfully",
     "validateAccountFail": "Please enter your account number.",
     "validatePasswordFail": "Please enter your password.",
-    "validatePasswordLengthFail": "Insufficient password length."
+    "validatePasswordLengthFail": "Insufficient password length.",
+    "pleaseLogin": "Please log in."
   }
 }

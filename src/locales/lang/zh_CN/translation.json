@@ -32,6 +32,7 @@
     "loginSuccessTitle": "登录成功",
     "validateAccountFail": "请输入账号",
     "validatePasswordFail": "请输入密码",
-    "validatePasswordLengthFail": "密码长度不够"
+    "validatePasswordLengthFail": "密码长度不够",
+    "pleaseLogin": "请先登录"
   }
 }

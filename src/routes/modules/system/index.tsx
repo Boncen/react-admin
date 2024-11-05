@@ -12,10 +12,10 @@ export const routes: MenuItemExt = {
   children: [
     {
       index: true,
-      name:"userList",
+      name: "userList",
       path: "users",
       element: <UserList />,
-      fullPath: '/system/users',
+      fullPath: "/system/users",
       meta: {
         label: "menu.users",
       },
@@ -24,7 +24,7 @@ export const routes: MenuItemExt = {
       name: "userProfile",
       path: "user/profile",
       element: <Profile />,
-      fullPath: '/system/user/profile',
+      fullPath: "/system/user/profile",
       meta: {
         label: "menu.userProfile",
       },
@@ -33,7 +33,7 @@ export const routes: MenuItemExt = {
       path: "user/:id",
       name: "userDetail",
       element: <UserDetail />,
-      fullPath: '/system/user/:id',
+      fullPath: "/system/user/:id",
       meta: {
         label: "menu.userDetail",
       },
@@ -42,7 +42,7 @@ export const routes: MenuItemExt = {
       path: "menus",
       name: "menuList",
       element: <Menus />,
-            fullPath: '/system/menus',
+      fullPath: "/system/menus",
 
       meta: {
         label: "menu.menus",
@@ -52,7 +52,7 @@ export const routes: MenuItemExt = {
       path: "roles",
       name: "roleList",
       element: <RoleList />,
-      fullPath: '/system/roles',
+      fullPath: "/system/roles",
       meta: {
         label: "menu.roles",
       },
@@ -60,7 +60,7 @@ export const routes: MenuItemExt = {
     {
       path: "logs",
       name: "logList",
-      fullPath: '/system/logs',
+      fullPath: "/system/logs",
       element: <LogList />,
       meta: {
         label: "menu.logs",
