@@ -74,7 +74,7 @@ export function UserList() {
           function onClickDetail(record: any): void {
             console.log(record);
             if (record) {
-              push("userDetail", { id: record.id });
+              push("userDetail", { id: record.id }, record.name);
             }
           }
 

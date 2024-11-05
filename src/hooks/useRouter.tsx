@@ -1,15 +1,21 @@
 import useMenuStore from "@/store/useMenuStore";
 import { find } from "@/utils/common";
-import { useNavigate } from "react-router-dom";
+import { parseSearchParams } from "@/utils/routeMenu";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 export function UseRouter() {
   const menuStore = useMenuStore();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
-  function push(name: string, params?: Record<string, string | number>) {
+  function push(
+    name: string,
+    params?: Record<string, string | number>,
+    _title?: string
+  ) {
     const menu = find(menuStore.menus, (item) => item.name == name);
     if (!menu) {
-      navigate('/page_not_found');
+      navigate("/page_not_found");
       throw new Error(`route name '${name}' not found!`);
     }
     let path: string = menu.fullPath;
@@ -25,7 +31,21 @@ export function UseRouter() {
         path = path.replace(":" + key, params[key].toString());
       });
     }
-    navigate(path);
+    navigate(
+      {
+        pathname: path,
+        // search: parseSearchParams({
+        //   ...searchParams,
+        //   _title: _title,
+        // }),
+        hash: undefined,
+      },
+      {
+        state: {
+          _title,
+        },
+      }
+    );
   }
 
   function jump(delta: number) {

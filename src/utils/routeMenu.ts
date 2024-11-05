@@ -103,8 +103,21 @@ function findMenuByNestedId(
   return route;
 }
 
+
+function parseSearchParams(search: Record<string, any>): string {
+  if (!search) {
+    return "";
+  }
+  let result = "?";
+  Object.keys(search).forEach(key => {
+    result += `&${key}=${search[key]}`;
+  });
+  return result;
+}
+
 export {
   menuItemToNavItem,
   generateRouteMap,
   findMenuByNestedId,
+  parseSearchParams
 };

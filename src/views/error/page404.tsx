@@ -5,14 +5,14 @@ import {
 } from "@douyinfe/semi-illustrations";
 import { useTranslation } from "react-i18next";
 import { useContext } from "react";
-import { CloseTabContext } from "@/layout/multitabs/closeTabContext";
+import { MultiTabContext } from "@/layout/multitabs/multiTabContext";
 import { UseRouter } from "@/hooks/useRouter";
 
 export function Page404() {
   // const navigate = useNavigate();
-  const { push, jump } = UseRouter();
+  const { jump } = UseRouter();
   const { t } = useTranslation();
-  const context = useContext(CloseTabContext);
+  const context = useContext(MultiTabContext);
   return (
     <div className="flex flex-col justify-center items-center w-full h-full mt-10">
       <Empty

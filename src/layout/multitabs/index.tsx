@@ -12,7 +12,7 @@ import {
   useNavigate,
   useOutlet,
 } from "react-router-dom";
-import { CloseTabContext } from "./closeTabContext";
+import { MultiTabContext } from "./multiTabContext";
 
 export function MultiTabs() {
   const matches = useMatches();
@@ -29,13 +29,11 @@ export function MultiTabs() {
 
   useEffect(
     function () {
-
       const match = matches[matches.length - 1];
       if (match) {
-        console.log('match ---> ', match, tabs);
-        let tab = tabs.find((z) => z.itemKey == match.pathname)
+        console.log("match ---> ", match, tabs);
+        let tab = tabs.find((z) => z.itemKey == match.pathname);
         if (!tab) {
-
           // 找到路由
           const route = findMenuByNestedId(menus, match.id);
           if (route) {
@@ -50,14 +48,12 @@ export function MultiTabs() {
               itemKey: match.pathname,
               text: outlet,
               contentKey: getTimestamp(),
-            }
+            };
             // 添加标签
-            setTabs([
-              ...tabs, tab
-            ]);
+            setTabs([...tabs, tab]);
           }
         }
-        document.title = document.title.split('-')[0] + " - " + tab!.tab; 
+        document.title = document.title.split("-")[0] + " - " + tab!.tab;
         if (locate.pathname != activeKey) {
           setActiveKey(locate.pathname);
           statusStore.updateActiveRoute(locate.pathname);
@@ -82,7 +78,7 @@ export function MultiTabs() {
   function handleCloseTab(tabKey: string) {
     setTabs(() => tabs.filter((x) => x.itemKey != tabKey));
     if (activeKey == tabKey) {
-      setActiveKey('')
+      setActiveKey("");
     }
   }
   function handleTabClick(key: string) {
@@ -191,8 +187,8 @@ export function MultiTabs() {
           >
             <div
               onContextMenu={(e) => handleOnContextMenu(tab.itemKey, e)}
-              onMouseEnter={() => setHoverItemKey(tab.itemKey)}
-              onMouseLeave={() => setHoverItemKey("")}
+              // onMouseEnter={() => setHoverItemKey(tab.itemKey)}
+              // onMouseLeave={() => setHoverItemKey("")}
               onClick={() => handleTabClick(tab.itemKey)}
               className="relative min-w-30 border-solid border-t border-l border-r px-6 py-1 rounded-t-md flex items-center h-8 mr-1"
               style={{
@@ -200,8 +196,8 @@ export function MultiTabs() {
                   tab.itemKey === activeKey
                     ? "#3DAEE9"
                     : tab.itemKey === hoverItemKey
-                      ? "var(--semi-color-fill-0)"
-                      : "",
+                    ? "var(--semi-color-fill-0)"
+                    : "",
                 color:
                   tab.itemKey === activeKey
                     ? "#fff"
@@ -219,7 +215,9 @@ export function MultiTabs() {
               >
                 {tab.tab}
               </span>
-              {tab.itemKey === hoverItemKey && tabs.length > 1 && (
+              {
+              // tab.itemKey === hoverItemKey && tabs.length > 1 && 
+              (
                 <IconClose
                   size={"small"}
                   className="ml-3 cursor-pointer absolute right-1"
@@ -240,6 +238,25 @@ export function MultiTabs() {
   const handleCloseCurrentTab = () => {
     handleCloseTab(activeKey);
   };
+
+  /** 设置当前tab标题 */
+  const setTabTitle = (title: string) => {
+    if (activeKey) {
+      setTabs(
+        tabs.map((t) => {
+          if (t.itemKey == activeKey) {
+            return {
+              ...t,
+              tab: title,
+            };
+          } else {
+            return t;
+          }
+        })
+      );
+    }
+  };
+
   return (
     <Tabs
       type="card"
@@ -256,9 +273,11 @@ export function MultiTabs() {
           key={t.itemKey}
         >
           <div key={t.contentKey}>
-            <CloseTabContext.Provider value={{ closeCurrentTab: handleCloseCurrentTab }}>
+            <MultiTabContext.Provider
+              value={{ closeCurrentTab: handleCloseCurrentTab, setTabTitle: setTabTitle }}
+            >
               {t.text}
-            </CloseTabContext.Provider>
+            </MultiTabContext.Provider>
           </div>
         </TabPane>
       ))}
