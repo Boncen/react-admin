@@ -1,4 +1,4 @@
-# Rsbuild Project
+# React Admin
 
 ## Setup
 
@@ -9,6 +9,14 @@ pnpm install
 ```
 
 ## Get Started
+
+Start the json-server:
+
+```bash
+pnpm serve
+```
+
+> Edit the mock data in `mockdata/db.json`
 
 Start the dev server:
 
