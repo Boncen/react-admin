@@ -21,10 +21,6 @@ export default function Login() {
   }, [i18n, setting.lang]);
 
   const handleSubmit = () => {
-    api.getUserInfo().then((x) => {
-      console.log("userinfo", x);
-      userStore.actions.setUserInfo(x);
-    });
     api
       .login({
         account: username,
@@ -33,12 +29,16 @@ export default function Login() {
       .then((x: any) => {
         console.log('login result', x);
         
-        userStore.actions.setUserToken(x.token);
+        userStore.setUserToken(x.token);
         Notification.success({
           title: t("tip.loginSuccessTitle"),
           duration: 3,
         });
-
+        api.getUserInfo().then((x) => {
+          console.log("userinfo", x);
+          userStore.setUserInfo(x);
+          userStore.setUserPermission(x.permissions);
+        });
         navigate("/");
       }).catch((err)=> {
         Notification.error({
@@ -62,6 +62,7 @@ export default function Login() {
             label={t("ui.account")}
             onChange={(value) => setUsername(value)}
             trigger="blur"
+            placeholder={'admin'}
             rules={[{ required: true, message: t("tip.validateAccountFail") }]}
           />
           <Form.Input
@@ -70,6 +71,7 @@ export default function Login() {
               text: t("ui.password"),
             }}
             mode="password"
+            placeholder={'admin'}
             onChange={(value) => setPassword(value)}
             trigger="blur"
             rules={[
