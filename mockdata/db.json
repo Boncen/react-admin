@@ -8,7 +8,10 @@
       "mobile": "17777001234",
       "roles": [1, 2],
       "rolesName": ["管理员", "开发者"],
-      "id": 1001
+      "id": 1001,
+      "permissions": [
+        "user.delete", "user.edit", "role.edit"
+      ]
     }
   },
   "menus": {

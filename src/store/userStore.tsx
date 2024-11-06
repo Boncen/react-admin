@@ -1,56 +1,48 @@
-import { StorageEnum } from "@/types/enum";
-import { getItem, getStringItem } from "@/utils/storage";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { produce } from "immer";
 
 type userStore = {
-  userInfo: UserInfo;
-  userToken: string | null;
-  actions: {
-    setUserInfo: (userInfo: UserInfo) => void;
-    setUserToken: (userInfo: string) => void;
-    clearUserInfoAndToken: () => void;
-  };
+  userInfo?: UserInfo;
+  userToken?: string | null;
+  userPermissions?: string[];
+  setUserInfo: (userInfo: UserInfo) => void;
+  setUserToken: (token: string) => void;
+  clearUserInfoAndToken: () => void;
+  setUserPermission: (permissions: string[]) => void;
 };
 
 const useUserStore = create<userStore>()(
   persist(
     (set) => ({
-      userInfo: getItem<UserInfo>(StorageEnum.User) ?? ({} as UserInfo),
-      userToken: getStringItem(StorageEnum.Token),
-      actions: {
-        setUserInfo: (userInfo: UserInfo) => {
-          set({ userInfo });
-          //setItem(StorageEnum.User, userInfo);
-        },
-        setUserToken: (userToken: string) => {
-          set({ userToken });
-          // setItem(StorageEnum.Token, userToken);
-        },
-        clearUserInfoAndToken() {
-          set({ userInfo: {} as UserInfo, userToken: "" });
-          // removeItem(StorageEnum.User);
-          // removeItem(StorageEnum.Token);
-        },
-      },
+      userInfo: ({} as UserInfo),
+      userToken: '',
+      userPermissions: [],
+      setUserInfo: (userInfo: UserInfo) => set(
+        produce((state: userStore) => {
+          state.userInfo = userInfo;
+        })
+      ),
+      setUserToken: (userToken: string) => set(
+        produce((state: userStore) => {
+          state.userToken = userToken;
+        })
+      ),
+      clearUserInfoAndToken: () => set(
+        produce((state: userStore) => {
+          state.userInfo = undefined;
+          state.userToken = undefined;
+          state.userPermissions = [];
+        })
+      ),
+      setUserPermission: (permissions: string[]) => set(
+        produce((state: userStore) => {
+          state.userPermissions = permissions;
+        })
+      )
     }),
     { name: "user" }
   )
 );
 
 export default useUserStore;
-
-// export const useUserInfo = () => useUserStore((state: any) => state.userInfo);
-// export const useUserToken = () => useUserStore((state: any) => state.userToken);
-// export const useUserPermission = () =>
-//   useUserStore((state: any) => {
-//     return state.userInfo?.permissions;
-//   }); // todo
-// export const useUserActions = () => useUserStore((state: any) => state.actions);
-// export const useIfUserLogin = () =>
-//   useUserStore(
-//     (state: any) =>
-//       state.userToken != null &&
-//       state.userToken !== "" &&
-//       state.userToken != "null"
-//   );

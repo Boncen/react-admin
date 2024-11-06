@@ -15,6 +15,7 @@ import { Pagination } from "@douyinfe/semi-ui/lib/es/table";
 import { SetStateAction, useMemo, useState } from "react";
 import { MenuPermissionModal } from "./menuPermissionModal";
 import { Value } from "@douyinfe/semi-ui/lib/es/tree";
+import { PermissionGuard } from "@/components/permission-guard";
 
 export function RoleList() {
   const [, setSelectedKeys] = useState([]);
@@ -225,6 +226,10 @@ export function RoleList() {
             </Button>
           </ButtonGroup>
         </Form>
+        {/* <PermissionGuard required={['role.edit']}>
+          <Button>role.edit</Button>
+        </PermissionGuard> */}
+        
       </Card>
       <Card>
         <Table

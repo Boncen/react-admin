@@ -9,8 +9,9 @@ export function HeaderAvatar() {
   const userStore = useUserStore();
   const { t } = useTranslation();
   function logout() {
-    // clear userStore
-    userStore.actions.clearUserInfoAndToken();
+    console.log(userStore);
+    
+    userStore.clearUserInfoAndToken();
     navigate("/login");
   }
 
